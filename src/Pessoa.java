@@ -12,4 +12,11 @@ public class Pessoa {
         this.email = email;
         this.telefone = telefone;
     }
+
+    public void exibirDados() {
+        System.out.println("Nome: " + this.nome);
+        System.out.println("CPF: " + this.cpf);
+        System.out.println("E-mail: " + this.email);
+        System.out.println("Telefone: " + this.telefone);
+    }
 }

@@ -20,7 +20,10 @@ public class Professor extends Pessoa {
         this.disciplinas = new ArrayList<>();
     }
 
-    public void adicionarDisciplina() {
+    public void adicionarDisciplina(Disciplina disciplina) {
+    }
+
+    public void removeDisciplina(Disciplina disciplina) {
     }
 
     public void exibirDisciplinas() {

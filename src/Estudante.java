@@ -24,6 +24,18 @@ public class Estudante extends Pessoa {
         this.frequencias = new ArrayList<>();
     }
 
+    public void adicionarNota(Nota nota) {
+    }
+
+    public void adicionarFrequencia(Frequencia frequencia) {
+    }
+
+    public void exibirFrequencias() {
+    }
+
+    public void exibirNotas() {
+    }
+
     public double calcularMedia() {
         return 0;
     }
