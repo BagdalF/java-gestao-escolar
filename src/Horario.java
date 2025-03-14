@@ -1,6 +1,8 @@
+// Classe que representa o horário de uma disciplina com atributos como dia da semana, hora de início, hora de fim, disciplina, professor e turma.
 
 public class Horario {
 
+    // Atributos da classe Horario
     public String diaSemana;
     public String horaInicio;
     public String horaFim;
@@ -8,6 +10,7 @@ public class Horario {
     public Professor professor;
     public Turma turma;
 
+    // Construtor da classe Horario
     public Horario(
             String diaSemana,
             String horaInicio,
@@ -24,6 +27,7 @@ public class Horario {
         this.turma = turma;
     }
 
+    // Método para exibir os dados do horário
     public void exibirDados() {
         System.out.println("Dia da Semana: " + diaSemana);
         System.out.println("Hora de Início: " + horaInicio);
