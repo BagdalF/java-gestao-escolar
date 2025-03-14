@@ -1,14 +1,18 @@
+// Classe que representa uma avaliação com atributos como id, nome, data, peso e disciplina.
 
+// Importa a classe LocalDate para manipulação de datas
 import java.time.LocalDate;
 
 public class Avaliacao {
 
+    // Atributos da classe Avaliacao
     public int idAvaliacao;
     public String nome;
     public LocalDate data;
     public double peso;
     public Disciplina disciplina;
 
+    // Construtor da classe Avaliacao
     public Avaliacao(
             int idAvaliacao,
             String nome,
@@ -23,6 +27,7 @@ public class Avaliacao {
         this.disciplina = disciplina;
     }
 
+    // Método para exibir os dados da avaliação
     public void exibirDados() {
         System.out.println("ID: " + idAvaliacao);
         System.out.println("Nome: " + nome);
