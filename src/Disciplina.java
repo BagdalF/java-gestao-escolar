@@ -13,7 +13,6 @@ public class Disciplina {
     public int cargaHoraria;
     public List<Professor> professores;
     public List<Turma> turmas;
-    public List<Horario> horarios;
 
     // Construtor da classe Disciplina
     public Disciplina(
@@ -28,7 +27,6 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
         this.professores = new ArrayList<>();
         this.turmas = new ArrayList<>();
-        this.horarios = new ArrayList<>();
     }
 
     // Método para adicionar uma turma à disciplina
@@ -45,14 +43,6 @@ public class Disciplina {
 
     // Método para remover um professor da disciplina
     public void removerProfessor(Professor professor) {
-    }
-
-    // Método para adicionar um horário à disciplina
-    public void adicionarHorario(Horario horario) {
-    }
-
-    // Método para remover um horário da disciplina
-    public void removerHorario(Horario horario) {
     }
 
     // Método para exibir os dados da disciplina

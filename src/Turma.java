@@ -9,7 +9,6 @@ public class Turma {
     // Atributos da classe Turma
     public int idTurma;
     public String nome;
-    public List<Avaliacao> avaliacoes;
     public List<Disciplina> disciplinas;
     public List<Estudante> estudantes;
 
@@ -19,7 +18,6 @@ public class Turma {
         this.nome = nome;
         this.disciplinas = disciplinas;
         this.estudantes = new ArrayList<>();
-        this.avaliacoes = new ArrayList<>();
     }
 
     // Método para adicionar um estudante à turma
@@ -32,14 +30,6 @@ public class Turma {
 
     // Método para exibir os estudantes da turma
     public void exibirEstudantes() {
-    }
-
-    // Método para adicionar uma avaliação à turma
-    public void adicionarAvaliacao(Avaliacao avaliacao) {
-    }
-
-    // Método para remover uma avaliação da turma
-    public void removerAvaliacao(Avaliacao avaliacao) {
     }
 
     // Método para exibir as avaliações da turma
