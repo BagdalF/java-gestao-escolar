@@ -31,18 +31,41 @@ public class Disciplina {
 
     // Método para adicionar uma turma à disciplina
     public void adicionarTurma(Turma turma) {
+        this.turmas.add(turma);
     }
 
     // Método para remover uma turma da disciplina
     public void removerTurma(Turma turma) {
+        this.turmas.remove(turma);
     }
 
     // Método para adicionar um professor à disciplina
     public void adicionarProfessor(Professor professor) {
+        this.professores.add(professor);
+        professor.adicionarDisciplina(this);
     }
 
     // Método para remover um professor da disciplina
     public void removerProfessor(Professor professor) {
+        this.professores.remove(professor);
+        professor.removeDisciplina(this);
+    }
+
+    // Método para buscar um professor pelo nome
+    public Professor buscarProfessorPorNome(String nome) {
+        for (Professor professor : professores) {
+            if (professor.nome.equalsIgnoreCase(nome)) {
+                return professor;
+            }
+        }
+        return null;
+    }
+
+    // Método para exibir turmas da disciplina
+    public void exibirTurmas() {
+        for (Turma turma : turmas) {
+            System.out.println("Turma: " + turma.nome);
+        }
     }
 
     // Método para exibir os dados da disciplina

@@ -26,17 +26,39 @@ public class Professor extends Pessoa {
 
     // Método para adicionar uma disciplina ao professor
     public void adicionarDisciplina(Disciplina disciplina) {
+        this.disciplinas.add(disciplina);
+        disciplina.professores.add(this);
     }
 
     // Método para remover uma disciplina do professor
     public void removeDisciplina(Disciplina disciplina) {
+        this.disciplinas.remove(disciplina);
+        disciplina.professores.remove(this);
     }
 
     // Método para exibir as disciplinas do professor
     public void exibirDisciplinas() {
+        for (Disciplina disciplina : disciplinas) {
+            disciplina.exibirDados();
+        }
+    }
+
+    // Método para buscar disciplina por código
+    public Disciplina buscarDisciplinaPorCodigo(String codigo) {
+        for (Disciplina disciplina : disciplinas) {
+            if (disciplina.codigo.equalsIgnoreCase(codigo)) {
+                return disciplina;
+            }
+        }
+        return null; 
     }
 
     // Método para obter as turmas do professor
     public void obterTurmas() {
+        for (Disciplina disciplina : disciplinas) {
+            for (Turma turma : disciplina.turmas) {
+                System.out.println("Turma: " + turma.nome);
+            }
+        }
     }
 }

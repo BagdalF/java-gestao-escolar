@@ -16,6 +16,12 @@ public class Pessoa {
         this.telefone = telefone;
     }
 
+    // Método para atualização dos dados da pessoa
+    public void atualizarContato(String novoEmail, String novoTelefone) {
+        this.email = novoEmail;
+        this.telefone = novoTelefone;
+    }
+
     // Método para exibir os dados da pessoa
     public void exibirDados() {
         System.out.println("Nome: " + this.nome);
