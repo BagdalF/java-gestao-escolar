@@ -27,6 +27,7 @@ public class Estudante extends Pessoa {
     }
 
     // Método para exibir dados do estudante
+    @Override
     public void exibirDados() {
         super.exibirDados();
         System.out.println("Matrícula: " + this.matricula);
