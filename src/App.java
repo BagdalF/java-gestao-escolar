@@ -42,7 +42,7 @@ public class App {
                     menuEstudantes(scanner, estudantes);
                     break;
                 case 3:
-                    menuDisciplinas(scanner, disciplinas);
+                    menuDisciplinas(scanner, disciplinas, professores, turmas);
                     break;
                 case 4:
                     menuTurmas(scanner, turmas, estudantes);
@@ -118,8 +118,7 @@ public class App {
         String email = scanner.nextLine();
         System.out.print("Digite o telefone do professor: ");
         String telefone = scanner.nextLine();
-        System.out.print("Digite o ID do professor: ");
-        int idProfessor = scanner.nextInt();
+        int idProfessor = professores.size();
         scanner.nextLine();
 
         // Cria um novo objeto Professor
@@ -346,7 +345,7 @@ public class App {
     }
 
     // ====================== MENU DISCIPLINAS ======================
-    public static void menuDisciplinas(Scanner scanner, List<Disciplina> disciplinas) {
+    public static void menuDisciplinas(Scanner scanner, List<Disciplina> disciplinas, List<Professor> professores, List<Turma> turmas) {
         int opcao;
         do {
             System.out.println("\n===== GERENCIAMENTO DE DISCIPLINAS =====");
@@ -377,27 +376,21 @@ public class App {
                     exibirDadosDisciplina(scanner, disciplinas);
                     break;
                 case 4:
-                    exibirDadosDisciplinaTurma(scanner);
+                    exibirDadosDisciplinaTurma(scanner, disciplinas, turmas);
                     break;
                 case 5:
-                    adicionarProfessorDisciplina(scanner);
+                    adicionarProfessorDisciplina(scanner, professores, disciplinas);
                     break;
                 case 6:
-                    removerProfessorDisciplina(scanner);
+                    removerProfessorDisciplina(scanner, professores, disciplinas);
                     break;
                 case 7:
-                    adicionarTurmaDisciplina(scanner);
+                    adicionarTurmaDisciplina(scanner, turmas, disciplinas);
                     break;
                 case 8:
-                    removerTurmaDisciplina(scanner);
+                    removerTurmaDisciplina(scanner, turmas, disciplinas);
                     break;
                 case 9:
-                    adicionarHorarioDisciplina(scanner);
-                    break;
-                case 10:
-                    removerHorarioDisciplina(scanner);
-                    break;
-                case 11:
                     return; // Sai do menu de disciplinas e volta ao menu principal
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
@@ -444,32 +437,123 @@ public class App {
         }
     }
 
-    public static void exibirDadosDisciplinaTurma(Scanner scanner) {
-        // Implementar exibição de dados de uma disciplina em uma turma
+    public static void exibirDadosDisciplinaTurma(Scanner scanner, List<Disciplina> disciplinas, List<Turma> turmas) {
+        System.out.print("Digite o código da disciplina: ");
+        String codigoDisciplina = scanner.nextLine();
+
+        Disciplina disciplina = disciplinas.stream()
+                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .findFirst()
+                .orElse(null);
+
+        if (disciplina != null) {
+            System.out.println("Dados da Disciplina:");
+            disciplina.exibirDados();
+            System.out.println("Turmas associadas:");
+            disciplina.exibirTurmas();
+        } else {
+            System.out.println("Disciplina não encontrada.");
+        }
     }
 
-    public static void adicionarProfessorDisciplina(Scanner scanner) {
-        // Implementar adição de professor a uma disciplina
+    public static void adicionarProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        System.out.print("Digite o código da disciplina: ");
+        String codigoDisciplina = scanner.nextLine();
+        System.out.print("Digite o ID do professor: ");
+        int idProfessor = scanner.nextInt();
+        scanner.nextLine();
+
+        Disciplina disciplina = disciplinas.stream()
+                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .findFirst()
+                .orElse(null);
+
+        Professor professor = professores.stream()
+                .filter(p -> p.idProfessor == idProfessor)
+                .findFirst()
+                .orElse(null);
+
+        if (disciplina != null && professor != null) {
+            disciplina.adicionarProfessor(professor);
+            System.out.println("Professor adicionado à disciplina com sucesso.");
+        } else {
+            System.out.println("Disciplina ou professor não encontrado.");
+        }
     }
 
-    public static void removerProfessorDisciplina(Scanner scanner) {
-        // Implementar remoção de professor de uma disciplina
+    public static void removerProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        System.out.print("Digite o código da disciplina: ");
+        String codigoDisciplina = scanner.nextLine();
+        System.out.print("Digite o ID do professor: ");
+        int idProfessor = scanner.nextInt();
+        scanner.nextLine();
+
+        Disciplina disciplina = disciplinas.stream()
+                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .findFirst()
+                .orElse(null);
+
+        Professor professor = professores.stream()
+                .filter(p -> p.idProfessor == idProfessor)
+                .findFirst()
+                .orElse(null);
+
+        if (disciplina != null && professor != null) {
+            disciplina.removerProfessor(professor);
+            System.out.println("Professor removido da disciplina com sucesso.");
+        } else {
+            System.out.println("Disciplina ou professor não encontrado.");
+        }
     }
 
-    public static void adicionarTurmaDisciplina(Scanner scanner) {
-        // Implementar adição de turma a uma disciplina
+    public static void adicionarTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
+        System.out.print("Digite o código da disciplina: ");
+        String codigoDisciplina = scanner.nextLine();
+        System.out.print("Digite o ID da turma: ");
+        int idTurma = scanner.nextInt();
+        scanner.nextLine();
+
+        Disciplina disciplina = disciplinas.stream()
+                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .findFirst()
+                .orElse(null);
+
+        Turma turma = turmas.stream()
+                .filter(t -> t.idTurma == idTurma)
+                .findFirst()
+                .orElse(null);
+
+        if (disciplina != null && turma != null) {
+            disciplina.adicionarTurma(turma);
+            System.out.println("Turma adicionada à disciplina com sucesso.");
+        } else {
+            System.out.println("Disciplina ou turma não encontrada.");
+        }
     }
 
-    public static void removerTurmaDisciplina(Scanner scanner) {
-        // Implementar remoção de turma de uma disciplina
-    }
+    public static void removerTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
+        System.out.print("Digite o código da disciplina: ");
+        String codigoDisciplina = scanner.nextLine();
+        System.out.print("Digite o ID da turma: ");
+        int idTurma = scanner.nextInt();
+        scanner.nextLine();
 
-    public static void adicionarHorarioDisciplina(Scanner scanner) {
-        // Implementar adição de horário a uma disciplina
-    }
+        Disciplina disciplina = disciplinas.stream()
+                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .findFirst()
+                .orElse(null);
 
-    public static void removerHorarioDisciplina(Scanner scanner) {
-        // Implementar remoção de horário de uma disciplina
+        Turma turma = turmas.stream()
+                .filter(t -> t.idTurma == idTurma)
+                .findFirst()
+                .orElse(null);
+
+        if (disciplina != null && turma != null) {
+            disciplina.removerTurma(turma);
+            System.out.println("Turma removida da disciplina com sucesso.");
+        } else {
+            System.out.println("Disciplina ou turma não encontrada.");
+        }
     }
 
     // ====================== MENU TURMAS ======================
@@ -494,7 +578,7 @@ public class App {
             switch (opcao) {
                 case 1:
                     criarTurma(scanner, turmas);
-                    break;
+   
                 case 2:
                     exibirTurmas(turmas);
                     break;
