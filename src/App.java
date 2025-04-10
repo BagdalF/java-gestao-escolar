@@ -6,6 +6,7 @@
 // Importa a classe Scanner para leitura de dados do console
 import controllers.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import models.*;
@@ -60,6 +61,23 @@ public class App {
         scanner.close();
     }
 
+    public static int exibirMenu(Scanner scanner, String[] opcoes) {
+        while (true) {
+            try {
+                for (int i = 0; i < opcoes.length; i++) {
+                    System.out.println((i + 1) + ". " + opcoes[i]);
+                }
+                System.out.print("Escolha uma opção: ");
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida! Por favor, insira um número.");
+            } finally {
+                scanner.nextLine(); // Limpa o buffer do scanner
+            }
+        }
+    }
+
+
     // ====================== MENU PROFESSORES ======================
     /**
      * Menu para gerenciar professores. Permite cadastrar, exibir,
@@ -68,17 +86,15 @@ public class App {
     public static void menuProfessores(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
         int opcao;
         do {
-            System.out.println("\n===== GERENCIAMENTO DE PROFESSORES =====");
-            System.out.println("1. Cadastrar Professor");
-            System.out.println("2. Exibir Professores");
-            System.out.println("3. Exibir Dados de um Professor (Turmas e Disciplinas)");
-            System.out.println("4. Adicionar Disciplina a um Professor");
-            System.out.println("5. Remover Disciplina de um Professor");
-            System.out.println("6. Remover Professor");
-            System.out.println("7. Voltar");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+            opcao = exibirMenu(scanner, new String[] {
+                "Cadastrar Professor",
+                "Exibir Professores",
+                "Exibir Dados de um Professor (Turmas e Disciplinas)",
+                "Adicionar Disciplina a um Professor",
+                "Remover Disciplina de um Professor",
+                "Remover Professor",
+                "Voltar"
+            });
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
@@ -116,17 +132,15 @@ public class App {
     public static void menuEstudantes(Scanner scanner, List<Estudante> estudantes) {
         int opcao;
         do {
-            System.out.println("\n===== GERENCIAMENTO DE ESTUDANTES =====");
-            System.out.println("1. Cadastrar Estudante");
-            System.out.println("2. Exibir Estudantes");
-            System.out.println("3. Exibir Dados de um Estudante (Notas, Média e Frequência)");
-            System.out.println("4. Adicionar Nota");
-            System.out.println("5. Remover Nota");
-            System.out.println("6. Remover Estudante");
-            System.out.println("7. Voltar");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+            opcao = exibirMenu(scanner, new String[] {
+                "Cadastrar Estudante",
+                "Exibir Estudantes",
+                "Exibir Dados de um Estudante (Notas, Média e Frequência)",
+                "Adicionar Nota",
+                "Remover Nota",
+                "Remover Estudante",
+                "Voltar"
+            });
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
@@ -160,22 +174,17 @@ public class App {
     public static void menuDisciplinas(Scanner scanner, List<Disciplina> disciplinas, List<Professor> professores, List<Turma> turmas) {
         int opcao;
         do {
-            System.out.println("\n===== GERENCIAMENTO DE DISCIPLINAS =====");
-            System.out.println("1. Cadastrar Disciplina");
-            System.out.println("2. Exibir Disciplinas");
-            System.out.println("3. Exibir Dados de uma Disciplina");
-            System.out.println("4. Exibir Dados de uma Disciplina em uma Turma (Professor, Horários, Avaliações)");
-            System.out.println("5. Adicionar Professor a uma Disciplina");
-            System.out.println("6. Remover Professor de uma Disciplina");
-            System.out.println("7. Adicionar Turma a uma Disciplina");
-            System.out.println("8. Remover Turma de uma Disciplina");
-            System.out.println("9. Adicionar Horário a uma Disciplina");
-            System.out.println("10. Remover Horário de uma Disciplina");
-            System.out.println("11. Voltar");
-            System.out.print("Escolha uma opção: ");
-
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            opcao = exibirMenu(scanner, new String[] {
+                "Cadastrar Disciplina",
+                "Exibir Disciplinas",
+                "Exibir Dados de uma Disciplina",
+                "Exibir Dados de uma Disciplina em uma Turma (Professor, Horários, Avaliações)",
+                "Adicionar Professor a uma Disciplina",
+                "Remover Professor de uma Disciplina",
+                "Adicionar Turma a uma Disciplina",
+                "Remover Turma de uma Disciplina",
+                "Voltar"
+            });
 
             switch (opcao) {
                 case 1:
@@ -207,27 +216,24 @@ public class App {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        } while (opcao != 11); // O menu continua até que o usuário escolha "Voltar"
+        } while (opcao != 11);
     }
 
     // ====================== MENU TURMAS ======================
     public static void menuTurmas(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
         int opcao;
         do {
-            System.out.println("\n===== GERENCIAMENTO DE TURMAS =====");
-            System.out.println("1. Criar Turma");
-            System.out.println("2. Exibir Turmas");
-            System.out.println("3. Exibir Dados de uma Turma");
-            System.out.println("4. Adicionar Estudante a uma Turma");
-            System.out.println("5. Remover Estudante de uma Turma");
-            System.out.println("6. Exibir Estudantes de uma Turma");
-            System.out.println("7. Buscar Estudante de uma Turma pelo Nome");
-            System.out.println("8. Exibir Disciplinas de uma Turma");
-            System.out.println("9. Voltar");
-            System.out.print("Escolha uma opção: ");
-
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            opcao = exibirMenu(scanner, new String[] {
+                "Criar Turma",
+                "Exibir Turmas",
+                "Exibir Dados de uma Turma",
+                "Adicionar Estudante a uma Turma",
+                "Remover Estudante de uma Turma",
+                "Exibir Estudantes de uma Turma",
+                "Buscar Estudante de uma Turma pelo Nome",
+                "Exibir Disciplinas de uma Turma",
+                "Voltar"
+            });
 
             switch (opcao) {
                 case 1:
