@@ -13,51 +13,74 @@ import models.*;
 public class App {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int opcaoPrincipal;
+        try (Scanner scanner = new Scanner(System.in)) {
+            int opcaoPrincipal;
 
-        // Listas para armazenar os objetos do sistema
-        List<Professor> professores = new ArrayList<>();
-        List<Estudante> estudantes = new ArrayList<>();
-        List<Disciplina> disciplinas = new ArrayList<>();
-        List<Turma> turmas = new ArrayList<>();
+            // Listas para armazenar os objetos do sistema
+            List<Professor> professores = new ArrayList<>();
+            List<Estudante> estudantes = new ArrayList<>();
+            List<Disciplina> disciplinas = new ArrayList<>();
+            List<Turma> turmas = new ArrayList<>();
 
-        do {
-            // Exibe o menu principal
-            System.out.println("\n===== SISTEMA DE GESTÃO ACADÊMICA =====");
-            System.out.println("1. Gerenciar Professores");
-            System.out.println("2. Gerenciar Estudantes");
-            System.out.println("3. Gerenciar Disciplinas");
-            System.out.println("4. Gerenciar Turmas");
-            System.out.println("5. Sair");
-            System.out.print("Escolha uma opção: ");
+            do {
+                // Exibe o menu principal
+                System.out.println("\n===== SISTEMA DE GESTÃO ACADÊMICA =====");
+                System.out.println("1. Gerenciar Professores");
+                System.out.println("2. Gerenciar Estudantes");
+                System.out.println("3. Gerenciar Disciplinas");
+                System.out.println("4. Gerenciar Turmas");
+                System.out.println("5. Sair");
 
-            opcaoPrincipal = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+                opcaoPrincipal = capturarEntradaInteira(scanner);
 
-            // Direciona para o menu correspondente com base na opção escolhida
-            switch (opcaoPrincipal) {
-                case 1:
-                    menuProfessores(scanner, professores, disciplinas);
-                    break;
-                case 2:
-                    menuEstudantes(scanner, estudantes);
-                    break;
-                case 3:
-                    menuDisciplinas(scanner, disciplinas, professores, turmas);
-                    break;
-                case 4:
-                    menuTurmas(scanner, turmas, estudantes);
-                    break;
-                case 5:
-                    System.out.println("Saindo do sistema...");
-                    break;
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                // Direciona para o menu correspondente com base na opção escolhida
+                switch (opcaoPrincipal) {
+                    case 1:
+                        menuProfessores(scanner, professores, disciplinas);
+                        break;
+                    case 2:
+                        menuEstudantes(scanner, estudantes);
+                        break;
+                    case 3:
+                        menuDisciplinas(scanner, disciplinas, professores, turmas);
+                        break;
+                    case 4:
+                        menuTurmas(scanner, turmas, estudantes);
+                        break;
+                    case 5:
+                        System.out.println("Saindo do sistema...");
+                        break;
+                    default:
+                        System.out.println("Opção inválida! Tente novamente.");
+                }
+            } while (opcaoPrincipal != 5);
+        } catch (java.util.InputMismatchException e) {
+            System.out.println("Erro: Entrada inválida! Por favor, tente novamente.");
+            // Reinicia o menu principal usando um loop em vez de recursão
+        } catch (Exception e) {
+            System.out.println("Erro inesperado ocorreu. Por favor, tente novamente.");
+            // Reinicia o menu principal usando um loop em vez de recursão
+        }
+    }
+
+    public static int capturarEntradaInteira(Scanner scanner) {
+        int entrada = -1;
+        boolean entradaValida = false;
+
+        while (!entradaValida) {
+            try {
+                System.out.print("Escolha uma opção: ");
+                entrada = scanner.nextInt();
+                entradaValida = true;
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Entrada inválida! Por favor, insira um número inteiro.");
+            } finally {
+                scanner.nextLine();
             }
-        } while (opcaoPrincipal != 5);
 
-        scanner.close();
+        }
+
+        return entrada;
     }
 
     // ====================== MENU PROFESSORES ======================
@@ -71,14 +94,13 @@ public class App {
             System.out.println("\n===== GERENCIAMENTO DE PROFESSORES =====");
             System.out.println("1. Cadastrar Professor");
             System.out.println("2. Exibir Professores");
-            System.out.println("3. Exibir Dados de um Professor (Turmas e Disciplinas)");
+            System.out.println("3. Exibir Dados de um Professor (Ids iniciam em 1)");
             System.out.println("4. Adicionar Disciplina a um Professor");
             System.out.println("5. Remover Disciplina de um Professor");
             System.out.println("6. Remover Professor");
             System.out.println("7. Voltar");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+
+            opcao = capturarEntradaInteira(scanner);
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
@@ -119,14 +141,13 @@ public class App {
             System.out.println("\n===== GERENCIAMENTO DE ESTUDANTES =====");
             System.out.println("1. Cadastrar Estudante");
             System.out.println("2. Exibir Estudantes");
-            System.out.println("3. Exibir Dados de um Estudante (Notas, Média e Frequência)");
+            System.out.println("3. Exibir Dados de um Estudante (Ids iniciam em 1)");
             System.out.println("4. Adicionar Nota");
             System.out.println("5. Remover Nota");
             System.out.println("6. Remover Estudante");
             System.out.println("7. Voltar");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
-            scanner.nextLine();
+
+            opcao = capturarEntradaInteira(scanner);
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
@@ -164,18 +185,14 @@ public class App {
             System.out.println("1. Cadastrar Disciplina");
             System.out.println("2. Exibir Disciplinas");
             System.out.println("3. Exibir Dados de uma Disciplina");
-            System.out.println("4. Exibir Dados de uma Disciplina em uma Turma (Professor, Horários, Avaliações)");
+            System.out.println("4. Exibir Dados de uma Disciplina em uma Turma (Ids iniciam em 1)");
             System.out.println("5. Adicionar Professor a uma Disciplina");
             System.out.println("6. Remover Professor de uma Disciplina");
             System.out.println("7. Adicionar Turma a uma Disciplina");
             System.out.println("8. Remover Turma de uma Disciplina");
-            System.out.println("9. Adicionar Horário a uma Disciplina");
-            System.out.println("10. Remover Horário de uma Disciplina");
-            System.out.println("11. Voltar");
-            System.out.print("Escolha uma opção: ");
+            System.out.println("9. Voltar");
 
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            opcao = capturarEntradaInteira(scanner);
 
             switch (opcao) {
                 case 1:
@@ -207,7 +224,7 @@ public class App {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        } while (opcao != 11); // O menu continua até que o usuário escolha "Voltar"
+        } while (opcao != 9);
     }
 
     // ====================== MENU TURMAS ======================
@@ -217,17 +234,15 @@ public class App {
             System.out.println("\n===== GERENCIAMENTO DE TURMAS =====");
             System.out.println("1. Criar Turma");
             System.out.println("2. Exibir Turmas");
-            System.out.println("3. Exibir Dados de uma Turma");
+            System.out.println("3. Exibir Dados de uma Turma (Ids iniciam em 1)");
             System.out.println("4. Adicionar Estudante a uma Turma");
             System.out.println("5. Remover Estudante de uma Turma");
             System.out.println("6. Exibir Estudantes de uma Turma");
             System.out.println("7. Buscar Estudante de uma Turma pelo Nome");
             System.out.println("8. Exibir Disciplinas de uma Turma");
             System.out.println("9. Voltar");
-            System.out.print("Escolha uma opção: ");
 
-            opcao = scanner.nextInt();
-            scanner.nextLine(); // Consumir quebra de linha
+            opcao = capturarEntradaInteira(scanner);
 
             switch (opcao) {
                 case 1:

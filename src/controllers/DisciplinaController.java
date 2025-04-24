@@ -9,14 +9,24 @@ public class DisciplinaController {
 
     // Funções para Disciplinas
     public static void cadastrarDisciplina(Scanner scanner, List<Disciplina> disciplinas) {
-        System.out.print("Digite o código da disciplina: ");
-        String codigo = scanner.nextLine();
+        int codigo = disciplinas.size() + 1;
         System.out.print("Digite o nome da disciplina: ");
         String nome = scanner.nextLine();
         System.out.print("Digite a descrição da disciplina: ");
         String descricao = scanner.nextLine();
-        System.out.print("Digite a carga horária da disciplina: ");
-        int cargaHoraria = scanner.nextInt();
+        int cargaHoraria = 0;
+        boolean entradaValida = false;
+
+        while (!entradaValida) {
+            try {
+                System.out.print("Digite a carga horária da disciplina: ");
+                cargaHoraria = scanner.nextInt();
+                entradaValida = true;
+            } catch (java.util.InputMismatchException e) {
+                System.out.println("Entrada inválida! Por favor, insira um número inteiro.");
+                scanner.nextLine(); // Limpa o buffer do scanner
+            }
+        }
 
         Disciplina disciplina = new Disciplina(codigo, nome, descricao, cargaHoraria);
         disciplinas.add(disciplina); // Adiciona a disciplina à lista de disciplinas
@@ -24,19 +34,33 @@ public class DisciplinaController {
     }
 
     public static void exibirDisciplinas(List<Disciplina> disciplinas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
         for (Disciplina disciplina : disciplinas) {
             disciplina.exibirDados();
         }
     }
 
     public static void exibirDadosDisciplina(Scanner scanner, List<Disciplina> disciplinas) {
-        System.out.print("Digite o código da disciplina: ");
-        String codigo = scanner.nextLine();
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
 
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigo))
-                .findFirst()
-                .orElse(null);
+        System.out.print("Digite o código da disciplina: ");
+        int codigo = scanner.nextInt();
+        scanner.nextLine();
+
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigo) {
+                disciplina = d;
+                break;
+            }
+        }
 
         if (disciplina != null) {
             disciplina.exibirDados();
@@ -46,11 +70,16 @@ public class DisciplinaController {
     }
 
     public static void exibirDadosDisciplinaTurma(Scanner scanner, List<Disciplina> disciplinas, List<Turma> turmas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigo = scanner.nextInt();
 
         Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
+                .filter(d -> d.getCodigo() == codigo)
                 .findFirst()
                 .orElse(null);
 
@@ -65,19 +94,32 @@ public class DisciplinaController {
     }
 
     public static void adicionarProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
 
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break;
+            }
+        }
 
         Professor professor = professores.stream()
-                .filter(p -> p.idProfessor == idProfessor)
+                .filter(p -> p.getIdProfessor() == idProfessor)
                 .findFirst()
                 .orElse(null);
 
@@ -90,19 +132,32 @@ public class DisciplinaController {
     }
 
     public static void removerProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
 
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break;
+            }
+        }
 
         Professor professor = professores.stream()
-                .filter(p -> p.idProfessor == idProfessor)
+                .filter(p -> p.getIdProfessor() == idProfessor)
                 .findFirst()
                 .orElse(null);
 
@@ -115,19 +170,32 @@ public class DisciplinaController {
     }
 
     public static void adicionarTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
+        if (turmas.isEmpty()) {
+            System.out.println("Nenhuma turma cadastrada.");
+            return;
+        }
+
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
 
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break;
+            }
+        }
 
         Turma turma = turmas.stream()
-                .filter(t -> t.idTurma == idTurma)
+                .filter(t -> t.getIdTurma() == idTurma)
                 .findFirst()
                 .orElse(null);
 
@@ -140,19 +208,32 @@ public class DisciplinaController {
     }
 
     public static void removerTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
+        if (turmas.isEmpty()) {
+            System.out.println("Nenhuma turma cadastrada.");
+            return;
+        }
+
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
 
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break;
+            }
+        }
 
         Turma turma = turmas.stream()
-                .filter(t -> t.idTurma == idTurma)
+                .filter(t -> t.getIdTurma() == idTurma)
                 .findFirst()
                 .orElse(null);
 

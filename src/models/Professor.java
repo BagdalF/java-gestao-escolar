@@ -8,8 +8,8 @@ import java.util.List;
 public class Professor extends Pessoa {
 
     // Atributos da classe Professor
-    public int idProfessor;
-    public List<Disciplina> disciplinas;
+    private int idProfessor;
+    private List<Disciplina> disciplinas;
 
     // Construtor da classe Professor
     public Professor(
@@ -25,16 +25,33 @@ public class Professor extends Pessoa {
         this.disciplinas = new ArrayList<>();
     }
 
+    // Getters and Setters
+    public int getIdProfessor() {
+        return idProfessor;
+    }
+
+    public void setIdProfessor(int idProfessor) {
+        this.idProfessor = idProfessor;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
     // Método para adicionar uma disciplina ao professor
     public void adicionarDisciplina(Disciplina disciplina) {
         this.disciplinas.add(disciplina);
-        disciplina.professores.add(this);
+        disciplina.getProfessores().add(this);
     }
 
     // Método para remover uma disciplina do professor
     public void removeDisciplina(Disciplina disciplina) {
         this.disciplinas.remove(disciplina);
-        disciplina.professores.remove(this);
+        disciplina.getProfessores().remove(this);
     }
 
     // Método para exibir as disciplinas do professor
@@ -45,9 +62,9 @@ public class Professor extends Pessoa {
     }
 
     // Método para buscar disciplina por código
-    public Disciplina buscarDisciplinaPorCodigo(String codigo) {
+    public Disciplina buscarDisciplinaPorCodigo(int codigo) {
         for (Disciplina disciplina : disciplinas) {
-            if (disciplina.codigo.equalsIgnoreCase(codigo)) {
+            if (disciplina.getCodigo() == codigo) {
                 return disciplina;
             }
         }
@@ -57,9 +74,15 @@ public class Professor extends Pessoa {
     // Método para obter as turmas do professor
     public void obterTurmas() {
         for (Disciplina disciplina : disciplinas) {
-            for (Turma turma : disciplina.turmas) {
-                System.out.println("Turma: " + turma.nome);
+            for (Turma turma : disciplina.getTurmas()) {
+                System.out.println("Turma: " + turma.getNome());
             }
         }
+    }
+
+    @Override
+    public void exibirDadosEspecificos() {
+        exibirDados();
+        System.out.println("ID curricular: " + this.idProfessor);
     }
 }
