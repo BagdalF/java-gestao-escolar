@@ -30,7 +30,7 @@ public class DisciplinaController {
     }
 
     public static void exibirDadosDisciplina(Scanner scanner, List<Disciplina> disciplinas) {
-        System.out.print("Digite o código da disciplina: ");
+                System.out.print("Digite o código da disciplina: ");
         String codigo = scanner.nextLine();
 
         Disciplina disciplina = disciplinas.stream()
@@ -65,6 +65,7 @@ public class DisciplinaController {
     }
 
     public static void adicionarProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        // Composição: Uma disciplina possui uma lista de professores
         System.out.print("Digite o código da disciplina: ");
         String codigoDisciplina = scanner.nextLine();
         System.out.print("Digite o ID do professor: ");
@@ -115,6 +116,7 @@ public class DisciplinaController {
     }
 
     public static void adicionarTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
+        // Composição: Uma disciplina possui uma lista de turmas
         System.out.print("Digite o código da disciplina: ");
         String codigoDisciplina = scanner.nextLine();
         System.out.print("Digite o ID da turma: ");

@@ -33,7 +33,7 @@ public class ProfessorController {
      * Exibe os dados de todos os professores cadastrados.
      */
     public static void exibirProfessores(List<Professor> professores) {
-        for (Professor professor : professores) {
+                for (Professor professor : professores) {
             professor.exibirDados(); // Chama o método exibirDados da classe Professor
         }
     }
@@ -55,6 +55,7 @@ public class ProfessorController {
      * Adiciona uma disciplina a um professor.
      */
     public static void adicionarDisciplinaProfessor(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        // Composição: Um professor possui uma lista de disciplinas
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
@@ -79,6 +80,7 @@ public class ProfessorController {
      * Remove uma disciplina de um professor.
      */
     public static void removerDisciplinaProfessor(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        // Composição: Remove a relação entre o professor e a disciplina
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();

@@ -11,6 +11,7 @@ public class Disciplina {
     public String nome;
     public String descricao;
     public int cargaHoraria;
+    // Composição: Uma disciplina possui uma lista de professores e turmas
     public List<Professor> professores;
     public List<Turma> turmas;
 
@@ -63,6 +64,7 @@ public class Disciplina {
 
     // Método para exibir turmas da disciplina
     public void exibirTurmas() {
+        // Composição: A disciplina mantém uma relação com as turmas
         for (Turma turma : turmas) {
             System.out.println("Turma: " + turma.nome);
         }

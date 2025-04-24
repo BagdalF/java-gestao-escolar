@@ -11,6 +11,7 @@ public class TurmaController {
     // Métodos auxiliares (criarTurma, exibirTurmas, etc.)
     // Copiados da classe App e ajustados para esta classe
     public static void criarTurma(Scanner scanner, List<Turma> turmas) {
+        // Composição: Uma turma possui uma lista de disciplinas
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
@@ -49,7 +50,7 @@ public class TurmaController {
     }
 
     public static void exibirDadosTurma(Scanner scanner, List<Turma> turmas) {
-        System.out.print("Digite o ID da turma: ");
+                System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
 
@@ -67,6 +68,7 @@ public class TurmaController {
     }
 
     public static void adicionarEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
+        // Composição: Uma turma mantém uma relação com os estudantes
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
@@ -92,6 +94,7 @@ public class TurmaController {
     }
 
     public static void removerEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
+        // Composição: Remove a relação entre a turma e o estudante
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
@@ -135,7 +138,7 @@ public class TurmaController {
     }
 
     public static void buscarEstudantePorNome(Scanner scanner, List<Turma> turmas) {
-        System.out.print("Digite o ID da turma: ");
+                System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Digite o nome do estudante: ");
@@ -160,7 +163,7 @@ public class TurmaController {
     }
 
     public static void exibirDisciplinas(Scanner scanner, List<Turma> turmas) {
-        System.out.print("Digite o ID da turma: ");
+                System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
 

@@ -28,7 +28,7 @@ public class EstudanteController {
     }
 
     public static void exibirEstudantes(List<Estudante> estudantes) {
-        for (Estudante estudante : estudantes) {
+                for (Estudante estudante : estudantes) {
             estudante.exibirDados();
         }
     }
@@ -50,6 +50,7 @@ public class EstudanteController {
     }
 
     public static void adicionarNotaEstudante(Scanner scanner, List<Estudante> estudantes) {
+        // Composição: Um estudante possui uma lista de notas
         System.out.print("Digite a matrícula do estudante: ");
         String matricula = scanner.nextLine();
         System.out.print("Digite a nota a ser adicionada: ");
@@ -70,6 +71,7 @@ public class EstudanteController {
     }
 
     public static void removerNotaEstudante(Scanner scanner, List<Estudante> estudantes) {
+        // Composição: Remove uma nota da lista de notas do estudante
         System.out.print("Digite a matrícula do estudante: ");
         String matricula = scanner.nextLine();
         System.out.print("Digite a nota a ser removida: ");

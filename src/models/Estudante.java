@@ -30,6 +30,7 @@ public class Estudante extends Pessoa {
     // Método para exibir dados do estudante
     @Override
     public void exibirDados() {
+        // Polimorfismo: Sobrescreve o método exibirDados da classe Pessoa
         super.exibirDados();
         System.out.println("Matrícula: " + this.matricula);
         System.out.println("Turma: " + (this.turma != null ? this.turma.nome : "Sem turma"));
