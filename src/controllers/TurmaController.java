@@ -83,6 +83,7 @@ public class TurmaController {
             return;
         }
 
+        // Composição: Uma turma mantém uma relação com os estudantes
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
@@ -119,6 +120,7 @@ public class TurmaController {
             return;
         }
 
+        // Composição: Remove a relação entre a turma e o estudante
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();

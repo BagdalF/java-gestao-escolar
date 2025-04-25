@@ -61,10 +61,13 @@ public class EstudanteController {
     }
 
     public static void adicionarNotaEstudante(Scanner scanner, List<Estudante> estudantes) {
+
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");
             return;
         }
+
+        // Composição: Um estudante possui uma lista de notas
         System.out.print("Digite a matrícula do estudante: ");
         int matricula = scanner.nextInt();
         System.out.print("Digite a nota a ser adicionada: ");
@@ -92,6 +95,8 @@ public class EstudanteController {
             System.out.println("Nenhum estudante cadastrado.");
             return;
         }
+
+        // Composição: Remove uma nota da lista de notas do estudante
         System.out.print("Digite a matrícula do estudante: ");
         int matricula = scanner.nextInt();
         System.out.print("Digite a nota a ser removida: ");

@@ -10,6 +10,7 @@ public class Turma {
     // Atributos da classe Turma
     private int idTurma;
     private String nome;
+    // Composição: Uma turma possui uma lista de disciplinas e estudantes
     private List<Disciplina> disciplinas;
     private List<Estudante> estudantes;
 
@@ -56,6 +57,7 @@ public class Turma {
 
     // Método para adicionar um estudante à turma
     public void adicionarEstudante(Estudante estudante) {
+        // Composição: A turma mantém uma relação com os estudantes
         this.estudantes.add(estudante);
         estudante.setTurma(this);
     }

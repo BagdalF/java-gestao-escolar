@@ -57,6 +57,7 @@ public abstract class Pessoa {
     }
 
     // Método para exibir os dados da pessoa
+    // Polimorfismo: Este método pode ser sobrescrito por subclasses
     public void exibirDados() {
         System.out.println("Nome: " + this.nome);
         System.out.println("CPF: " + this.cpf);

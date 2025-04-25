@@ -85,6 +85,7 @@ public class ProfessorController {
             return;
         }
 
+        // Composição: Um professor possui uma lista de disciplinas
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
@@ -122,6 +123,7 @@ public class ProfessorController {
             return;
         }
 
+        // Composição: Remove a relação entre o professor e a disciplina
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();

@@ -14,6 +14,21 @@ public class Disciplina {
     private List<Professor> professores;
     private List<Turma> turmas;
 
+    // Construtor da classe Disciplina
+    public Disciplina(
+            int codigo,
+            String nome,
+            String descricao,
+            int cargaHoraria
+    ) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.cargaHoraria = cargaHoraria;
+        this.professores = new ArrayList<>();
+        this.turmas = new ArrayList<>();
+    }
+  
     // Getters and Setters
     public int getCodigo() {
         return codigo;
@@ -63,21 +78,6 @@ public class Disciplina {
         this.turmas = turmas;
     }
 
-    // Construtor da classe Disciplina
-    public Disciplina(
-            int codigo,
-            String nome,
-            String descricao,
-            int cargaHoraria
-    ) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.cargaHoraria = cargaHoraria;
-        this.professores = new ArrayList<>();
-        this.turmas = new ArrayList<>();
-    }
-
     // Método para adicionar uma turma à disciplina
     public void adicionarTurma(Turma turma) {
         this.turmas.add(turma);
@@ -118,6 +118,7 @@ public class Disciplina {
 
     // Método para exibir turmas da disciplina
     public void exibirTurmas() {
+        // Composição: A disciplina mantém uma relação com as turmas
         for (Turma turma : turmas) {
             System.out.println("Turma: " + turma.getNome());
         }

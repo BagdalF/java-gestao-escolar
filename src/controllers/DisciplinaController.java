@@ -104,6 +104,7 @@ public class DisciplinaController {
             return;
         }
 
+        // Composição: Uma disciplina possui uma lista de professores
         System.out.print("Digite o código da disciplina: ");
         int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID do professor: ");
@@ -180,6 +181,7 @@ public class DisciplinaController {
             return;
         }
 
+        // Composição: Uma disciplina possui uma lista de turmas
         System.out.print("Digite o código da disciplina: ");
         int codigoDisciplina = scanner.nextInt();
         System.out.print("Digite o ID da turma: ");

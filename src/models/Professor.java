@@ -9,6 +9,7 @@ public class Professor extends Pessoa {
 
     // Atributos da classe Professor
     private int idProfessor;
+    // Agregação: Um professor pode possuir uma lista de disciplinas
     private List<Disciplina> disciplinas;
 
     // Construtor da classe Professor
@@ -56,6 +57,7 @@ public class Professor extends Pessoa {
 
     // Método para exibir as disciplinas do professor
     public void exibirDisciplinas() {
+        // Agregação: Chama o método exibirDados de cada disciplina
         for (Disciplina disciplina : disciplinas) {
             disciplina.exibirDados();
         }
