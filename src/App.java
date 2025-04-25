@@ -6,7 +6,6 @@
 // Importa a classe Scanner para leitura de dados do console
 import controllers.*;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import models.*;
@@ -83,23 +82,6 @@ public class App {
 
         return entrada;
     }
-
-    public static int exibirMenu(Scanner scanner, String[] opcoes) {
-        while (true) {
-            try {
-                for (int i = 0; i < opcoes.length; i++) {
-                    System.out.println((i + 1) + ". " + opcoes[i]);
-                }
-                System.out.print("Escolha uma opção: ");
-                return scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida! Por favor, insira um número.");
-            } finally {
-                scanner.nextLine(); // Limpa o buffer do scanner
-            }
-        }
-    }
-
 
     // ====================== MENU PROFESSORES ======================
     /**

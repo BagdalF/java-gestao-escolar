@@ -51,14 +51,14 @@ public class Estudante extends Pessoa {
     public void setNotas(List<Integer> notas) {
         this.notas = notas;
     }
-    
+
     // Método para adicionar nota do estudante
     public void adicionarNota(int nota) {
         this.notas.add(nota);
     }
 
     // Sobrecarga do método adicionarNota
-    private void adicionarNota(List<Integer> notas) {
+    public void adicionarNota(List<Integer> notas) {
         this.notas.addAll(notas);
     }
 
