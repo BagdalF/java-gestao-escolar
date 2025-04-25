@@ -8,12 +8,11 @@ import java.util.List;
 public class Turma {
 
     // Atributos da classe Turma
-    public int idTurma;
-    public String nome;
-
+    private int idTurma;
+    private String nome;
     // Composição: Uma turma possui uma lista de disciplinas e estudantes
-    public List<Disciplina> disciplinas;
-    public List<Estudante> estudantes;
+    private List<Disciplina> disciplinas;
+    private List<Estudante> estudantes;
 
     // Construtor da classe Turma
     public Turma(int idTurma, String nome, List<Disciplina> disciplinas) {
@@ -23,17 +22,57 @@ public class Turma {
         this.estudantes = new ArrayList<>();
     }
 
+    // Getters and Setters
+    public int getIdTurma() {
+        return idTurma;
+    }
+
+    public void setIdTurma(int idTurma) {
+        this.idTurma = idTurma;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(List<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public List<Estudante> getEstudantes() {
+        return estudantes;
+    }
+
+    public void setEstudantes(List<Estudante> estudantes) {
+        this.estudantes = estudantes;
+    }
+
     // Método para adicionar um estudante à turma
     public void adicionarEstudante(Estudante estudante) {
         // Composição: A turma mantém uma relação com os estudantes
         this.estudantes.add(estudante);
-        estudante.turma = this; // Atualiza a referência da turma no estudante
+        estudante.setTurma(this);
+    }
+
+    // Sobrecarga do método adicionarEstudante
+    private void adicionarEstudante(List<Estudante> estudantes) {
+        for (Estudante estudante : estudantes) {
+            adicionarEstudante(estudante);
+        }
     }
 
     // Método para remover um estudante da turma
     public void removerEstudante(Estudante estudante) {
         this.estudantes.remove(estudante);
-        estudante.turma = null;
+        estudante.setTurma(null);
     }
 
     // Método para exibir os estudantes da turma
@@ -46,7 +85,7 @@ public class Turma {
     // Método para buscar um estudante pelo nome
     public Estudante buscarEstudantePorNome(String nome) {
         for (Estudante estudante : estudantes) {
-            if (estudante.nome.equalsIgnoreCase(nome)) {
+            if (estudante.getNome().equalsIgnoreCase(nome)) {
                 return estudante;
             }
         }

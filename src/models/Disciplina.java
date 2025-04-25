@@ -7,17 +7,16 @@ import java.util.List;
 public class Disciplina {
 
     // Atributos da classe Disciplina
-    public String codigo;
-    public String nome;
-    public String descricao;
-    public int cargaHoraria;
-    // Composição: Uma disciplina possui uma lista de professores e turmas
-    public List<Professor> professores;
-    public List<Turma> turmas;
+    private int codigo;
+    private String nome;
+    private String descricao;
+    private int cargaHoraria;
+    private List<Professor> professores;
+    private List<Turma> turmas;
 
     // Construtor da classe Disciplina
     public Disciplina(
-            String codigo,
+            int codigo,
             String nome,
             String descricao,
             int cargaHoraria
@@ -28,6 +27,55 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
         this.professores = new ArrayList<>();
         this.turmas = new ArrayList<>();
+    }
+  
+    // Getters and Setters
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public int getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public List<Professor> getProfessores() {
+        return professores;
+    }
+
+    public void setProfessores(List<Professor> professores) {
+        this.professores = professores;
+    }
+
+    public List<Turma> getTurmas() {
+        return turmas;
+    }
+
+    public void setTurmas(List<Turma> turmas) {
+        this.turmas = turmas;
     }
 
     // Método para adicionar uma turma à disciplina
@@ -40,10 +88,16 @@ public class Disciplina {
         this.turmas.remove(turma);
     }
 
-    // Método para adicionar um professor à disciplina
+    // Sobrecarga do método adicionarProfessor
     public void adicionarProfessor(Professor professor) {
         this.professores.add(professor);
         professor.adicionarDisciplina(this);
+    }
+
+    private void adicionarProfessor(List<Professor> professores) {
+        for (Professor professor : professores) {
+            adicionarProfessor(professor); // Reutiliza o método existente
+        }
     }
 
     // Método para remover um professor da disciplina
@@ -55,7 +109,7 @@ public class Disciplina {
     // Método para buscar um professor pelo nome
     public Professor buscarProfessorPorNome(String nome) {
         for (Professor professor : professores) {
-            if (professor.nome.equalsIgnoreCase(nome)) {
+            if (professor.getNome().equalsIgnoreCase(nome)) {
                 return professor;
             }
         }
@@ -66,7 +120,7 @@ public class Disciplina {
     public void exibirTurmas() {
         // Composição: A disciplina mantém uma relação com as turmas
         for (Turma turma : turmas) {
-            System.out.println("Turma: " + turma.nome);
+            System.out.println("Turma: " + turma.getNome());
         }
     }
 

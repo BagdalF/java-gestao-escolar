@@ -13,6 +13,7 @@ public class ProfessorController {
      * Cadastra um novo professor com os dados fornecidos pelo usuário.
      */
     public static void cadastrarProfessor(Scanner scanner, List<Professor> professores) {
+        int idProfessor = professores.size() + 1;
         System.out.print("Digite o nome do professor: ");
         String nome = scanner.nextLine();
         System.out.print("Digite o CPF do professor: ");
@@ -21,7 +22,6 @@ public class ProfessorController {
         String email = scanner.nextLine();
         System.out.print("Digite o telefone do professor: ");
         String telefone = scanner.nextLine();
-        int idProfessor = professores.size();
 
         // Cria um novo objeto Professor
         Professor professor = new Professor(nome, cpf, email, telefone, idProfessor);
@@ -33,7 +33,12 @@ public class ProfessorController {
      * Exibe os dados de todos os professores cadastrados.
      */
     public static void exibirProfessores(List<Professor> professores) {
-                for (Professor professor : professores) {
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
+        for (Professor professor : professores) {
             professor.exibirDados(); // Chama o método exibirDados da classe Professor
         }
     }
@@ -42,34 +47,62 @@ public class ProfessorController {
      * Exibe os dados de um professor específico com base no ID fornecido.
      */
     public static void exibirDadosProfessor(Scanner scanner, List<Professor> professores) {
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
 
-        // Busca o professor pelo ID e exibe seus dados
-        professores.get(idProfessor).exibirDados();
-        System.out.println("Exibindo dados do professor com ID " + idProfessor + "...");
+        Professor professor = null;
+        for (Professor p : professores) {
+            if (p.getIdProfessor() == idProfessor) {
+                professor = p;
+                break;
+            }
+        }
+
+        if (professor != null) {
+            professor.exibirDados();
+        } else {
+            System.out.println("Professor não encontrado.");
+        }
     }
 
     /**
      * Adiciona uma disciplina a um professor.
      */
     public static void adicionarDisciplinaProfessor(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
         // Composição: Um professor possui uma lista de disciplinas
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
 
         // Busca a disciplina pelo código
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break; // Interrompe o loop assim que a turma é encontrada
+            }
+        }
 
         if (disciplina != null) {
-            professores.get(idProfessor).adicionarDisciplina(disciplina);
+            professores.get(idProfessor - 1).adicionarDisciplina(disciplina);
             System.out.println("Disciplina adicionada ao professor com ID " + idProfessor + ".");
         } else {
             System.out.println("Disciplina não encontrada.");
@@ -80,21 +113,34 @@ public class ProfessorController {
      * Remove uma disciplina de um professor.
      */
     public static void removerDisciplinaProfessor(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
+        if (disciplinas.isEmpty()) {
+            System.out.println("Nenhuma disciplina cadastrada.");
+            return;
+        }
+
         // Composição: Remove a relação entre o professor e a disciplina
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Digite o código da disciplina: ");
-        String codigoDisciplina = scanner.nextLine();
+        int codigoDisciplina = scanner.nextInt();
 
         // Busca a disciplina pelo código
-        Disciplina disciplina = disciplinas.stream()
-                .filter(d -> d.codigo.equalsIgnoreCase(codigoDisciplina))
-                .findFirst()
-                .orElse(null);
+        Disciplina disciplina = null;
+        for (Disciplina d : disciplinas) {
+            if (d.getCodigo() == codigoDisciplina) {
+                disciplina = d;
+                break; // Interrompe o loop assim que a turma é encontrada
+            }
+        }
 
         if (disciplina != null) {
-            professores.get(idProfessor).removeDisciplina(disciplina);
+            professores.get(idProfessor - 1).removeDisciplina(disciplina);
             System.out.println("Disciplina removida do professor com ID " + idProfessor + ".");
         } else {
             System.out.println("Disciplina não encontrada.");
@@ -105,11 +151,16 @@ public class ProfessorController {
      * Remove um professor com base no ID fornecido.
      */
     public static void removerProfessor(Scanner scanner, List<Professor> professores) {
+        if (professores.isEmpty()) {
+            System.out.println("Nenhum professor cadastrado.");
+            return;
+        }
+
         System.out.print("Digite o ID do professor: ");
         int idProfessor = scanner.nextInt();
         scanner.nextLine();
 
-        professores.removeIf(p -> p.idProfessor == idProfessor); // Remove o professor da lista
+        professores.removeIf(p -> p.getIdProfessor() == idProfessor); // Remove o professor da lista
         System.out.println("Professor com ID " + idProfessor + " removido com sucesso.");
     }
 }
