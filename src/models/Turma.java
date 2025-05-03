@@ -55,9 +55,8 @@ public class Turma {
         this.estudantes = estudantes;
     }
 
-    // Método para adicionar um estudante à turma
+    // Associação: Adiciona um estudante à turma e atualiza a relação no estudante
     public void adicionarEstudante(Estudante estudante) {
-        // Composição: A turma mantém uma relação com os estudantes
         this.estudantes.add(estudante);
         estudante.setTurma(this);
     }
@@ -70,6 +69,7 @@ public class Turma {
     }
 
     // Método para remover um estudante da turma
+    // Composição: Remove um estudante da turma e atualiza a relação no estudante
     public void removerEstudante(Estudante estudante) {
         this.estudantes.remove(estudante);
         estudante.setTurma(null);

@@ -28,7 +28,7 @@ public class Disciplina {
         this.professores = new ArrayList<>();
         this.turmas = new ArrayList<>();
     }
-  
+
     // Getters and Setters
     public int getCodigo() {
         return codigo;
@@ -62,28 +62,32 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
 
+    // Agregação: Permite acessar a lista de professores associados à professores
     public List<Professor> getProfessores() {
         return professores;
     }
 
+    // Associação: Permite modificar a lista de disciplinas associadas à professores
     public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
 
+    // Agregação: Permite acessar a lista de turmas associadas à turma
     public List<Turma> getTurmas() {
         return turmas;
     }
 
+    // Associação: Permite modificar a lista de disciplinas associadas à turma
     public void setTurmas(List<Turma> turmas) {
         this.turmas = turmas;
     }
 
-    // Método para adicionar uma turma à disciplina
+    // Método para adicionar uma turma à turma
     public void adicionarTurma(Turma turma) {
         this.turmas.add(turma);
     }
 
-    // Método para remover uma turma da disciplina
+    // Método para remover uma turma da turma
     public void removerTurma(Turma turma) {
         this.turmas.remove(turma);
     }

@@ -9,7 +9,6 @@ public class Professor extends Pessoa {
 
     // Atributos da classe Professor
     private int idProfessor;
-    // Agregação: Um professor pode possuir uma lista de disciplinas
     private List<Disciplina> disciplinas;
 
     // Construtor da classe Professor
@@ -35,21 +34,21 @@ public class Professor extends Pessoa {
         this.idProfessor = idProfessor;
     }
 
+    // Agregação: Permite acessar a lista de disciplinas associadas à disciplina
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
 
+    // Associação: Permite modificar a lista de disciplinas associadas à disciplina
     public void setDisciplinas(List<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
     }
 
-    // Método para adicionar uma disciplina ao professor
     public void adicionarDisciplina(Disciplina disciplina) {
         this.disciplinas.add(disciplina);
         disciplina.getProfessores().add(this);
     }
 
-    // Método para remover uma disciplina do professor
     public void removeDisciplina(Disciplina disciplina) {
         this.disciplinas.remove(disciplina);
         disciplina.getProfessores().remove(this);
@@ -57,7 +56,6 @@ public class Professor extends Pessoa {
 
     // Método para exibir as disciplinas do professor
     public void exibirDisciplinas() {
-        // Agregação: Chama o método exibirDados de cada disciplina
         for (Disciplina disciplina : disciplinas) {
             disciplina.exibirDados();
         }

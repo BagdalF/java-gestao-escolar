@@ -36,10 +36,12 @@ public class Estudante extends Pessoa {
         this.matricula = matricula;
     }
 
+    // Agregação: Permite acessar a turma associada à turma
     public Turma getTurma() {
         return turma;
     }
 
+    // Associação: Permite modificar a turma do estudante e atualiza a relação na turma
     public void setTurma(Turma turma) {
         this.turma = turma;
     }

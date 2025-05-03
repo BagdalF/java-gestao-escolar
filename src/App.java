@@ -22,6 +22,9 @@ public class App {
             List<Disciplina> disciplinas = new ArrayList<>();
             List<Turma> turmas = new ArrayList<>();
 
+            // Popula as listas com dados iniciais
+            Database.popular(professores, estudantes, disciplinas, turmas);
+
             do {
                 // Exibe o menu principal
                 System.out.println("\n===== SISTEMA DE GESTÃO ACADÊMICA =====");
@@ -45,7 +48,7 @@ public class App {
                         menuDisciplinas(scanner, disciplinas, professores, turmas);
                         break;
                     case 4:
-                        menuTurmas(scanner, turmas, estudantes);
+                        menuTurmas(scanner, turmas, estudantes, disciplinas);
                         break;
                     case 5:
                         System.out.println("Saindo do sistema...");
@@ -69,11 +72,13 @@ public class App {
 
         while (!entradaValida) {
             try {
+                scanner.nextLine();
                 System.out.print("Escolha uma opção: ");
+                scanner.nextLine();
                 entrada = scanner.nextInt();
                 entradaValida = true;
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Entrada inválida! Por favor, insira um número inteiro.");
+                System.out.println("Entrada inválida! Por favor, insira um número natural.");
             } finally {
                 scanner.nextLine();
             }
@@ -229,7 +234,7 @@ public class App {
     }
 
     // ====================== MENU TURMAS ======================
-    public static void menuTurmas(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
+    public static void menuTurmas(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes, List<Disciplina> disciplinas) {
         int opcao;
         do {
             System.out.println("\n===== GERENCIAMENTO DE TURMAS =====");
@@ -247,7 +252,7 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    TurmaController.criarTurma(scanner, turmas);
+                    TurmaController.criarTurma(scanner, turmas, disciplinas);
                     break;
                 case 2:
                     TurmaController.exibirTurmas(turmas);
