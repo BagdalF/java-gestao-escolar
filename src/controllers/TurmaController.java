@@ -10,7 +10,7 @@ public class TurmaController {
 
     // Métodos auxiliares (criarTurma, exibirTurmas, etc.)
     // Copiados da classe App e ajustados para esta classe
-    public static void criarTurma(Scanner scanner, List<Turma> turmas) {
+    public static void criarTurma(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
         int idTurma = turmas.size() + 1;
 
         System.out.print("Digite o nome da turma: ");
@@ -20,22 +20,34 @@ public class TurmaController {
         int numDisciplinas = scanner.nextInt();
         scanner.nextLine();
 
-        List<Disciplina> disciplinas = new ArrayList<>();
+        List<Disciplina> disciplinasTurma = new ArrayList<>();
         for (int i = 0; i < numDisciplinas; i++) {
-            int codigoDisciplina = disciplinas.size() + 1;
-            System.out.print("Digite o nome da disciplina " + (i + 1) + ": ");
-            String nomeDisciplina = scanner.nextLine();
-            System.out.print("Digite a descrição da disciplina " + (i + 1) + ": ");
-            String descricaoDisciplina = scanner.nextLine();
-            System.out.print("Digite a carga horária da disciplina " + (i + 1) + ": ");
-            int cargaHoraria = scanner.nextInt();
+            if (disciplinas.isEmpty()) {
+                System.out.println("Nenhuma disciplina cadastrada.");
+                break;
+            }
+
+            System.out.print("Digite o ID da disciplina: ");
+            int idDisciplina = scanner.nextInt();
             scanner.nextLine();
 
-            Disciplina disciplina = new Disciplina(codigoDisciplina, nomeDisciplina, descricaoDisciplina, cargaHoraria);
-            disciplinas.add(disciplina);
+            Disciplina disciplina = null;
+            for (Disciplina d : disciplinas) {
+                if (d.getCodigo() == idDisciplina) {
+                    disciplina = d;
+                    break; // Interrompe o loop assim que a turma é encontrada
+                }
+            }
+
+            if (disciplina != null) {
+                disciplinasTurma.add(disciplina);
+                System.out.println("Disciplina " + disciplina.getNome() + " adicionada à turma.");
+            } else {
+                System.out.println("Disciplina não encontrada.");
+            }
         }
 
-        Turma turma = new Turma(idTurma, nome, disciplinas);
+        Turma turma = new Turma(idTurma, nome, disciplinasTurma);
         turmas.add(turma);
         System.out.println("Turma criada com sucesso!");
     }
