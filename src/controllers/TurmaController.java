@@ -89,13 +89,13 @@ public class TurmaController {
         }
     }
 
+    // Composição: Uma turma mantém uma relação com os estudantes
     public static void adicionarEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
             return;
         }
 
-        // Composição: Uma turma mantém uma relação com os estudantes
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();
@@ -126,13 +126,13 @@ public class TurmaController {
         }
     }
 
+    // Composição: Remove a relação entre a turma e o estudante
     public static void removerEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
             return;
         }
 
-        // Composição: Remove a relação entre a turma e o estudante
         System.out.print("Digite o ID da turma: ");
         int idTurma = scanner.nextInt();
         scanner.nextLine();

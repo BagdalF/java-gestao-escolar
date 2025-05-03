@@ -45,7 +45,7 @@ public class App {
                         menuDisciplinas(scanner, disciplinas, professores, turmas);
                         break;
                     case 4:
-                        menuTurmas(scanner, turmas, estudantes);
+                        menuTurmas(scanner, turmas, estudantes, disciplinas);
                         break;
                     case 5:
                         System.out.println("Saindo do sistema...");
@@ -229,7 +229,7 @@ public class App {
     }
 
     // ====================== MENU TURMAS ======================
-    public static void menuTurmas(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
+    public static void menuTurmas(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes, List<Disciplina> disciplinas) {
         int opcao;
         do {
             System.out.println("\n===== GERENCIAMENTO DE TURMAS =====");
@@ -247,7 +247,7 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    TurmaController.criarTurma(scanner, turmas);
+                    TurmaController.criarTurma(scanner, turmas, disciplinas);
                     break;
                 case 2:
                     TurmaController.exibirTurmas(turmas);
