@@ -22,6 +22,9 @@ public class App {
             List<Disciplina> disciplinas = new ArrayList<>();
             List<Turma> turmas = new ArrayList<>();
 
+            // Popula as listas com dados iniciais
+            Database.popular(professores, estudantes, disciplinas, turmas);
+
             do {
                 // Exibe o menu principal
                 System.out.println("\n===== SISTEMA DE GESTÃO ACADÊMICA =====");
@@ -69,11 +72,13 @@ public class App {
 
         while (!entradaValida) {
             try {
+                scanner.nextLine();
                 System.out.print("Escolha uma opção: ");
+                scanner.nextLine();
                 entrada = scanner.nextInt();
                 entradaValida = true;
             } catch (java.util.InputMismatchException e) {
-                System.out.println("Entrada inválida! Por favor, insira um número inteiro.");
+                System.out.println("Entrada inválida! Por favor, insira um número natural.");
             } finally {
                 scanner.nextLine();
             }
