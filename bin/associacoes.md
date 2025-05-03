@@ -256,3 +256,17 @@ public static void adicionarDisciplinaTurma(Scanner scanner, List<Turma> turmas,
 ```
 
 ---
+
+# Modificações necessárias na classe App:
+
+1. **Manipulação de associações entre `Professor` e `Disciplina`:**
+   - Substituir o acesso direto às listas por métodos como `addDisciplina()` e `removeDisciplina()` ao associar ou desassociar disciplinas de professores.
+
+2. **Manipulação de associações entre `Estudante` e `Turma`:**
+   - Utilizar o método `setTurma()` para garantir que a associação entre estudantes e turmas seja consistente.
+
+3. **Manipulação de associações entre `Turma` e `Disciplina`:**
+   - Substituir o acesso direto às listas por métodos como `addDisciplina()` e `removeDisciplina()` ao associar ou desassociar disciplinas de turmas.
+
+4. **Manipulação de associações entre `Disciplina` e `Turma`/`Professor`:**
+   - Utilizar os métodos `addProfessor()` e `addTurma()` para gerenciar as associações de forma encapsulada.
