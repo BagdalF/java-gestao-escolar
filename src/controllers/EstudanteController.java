@@ -54,7 +54,7 @@ public class EstudanteController {
         }
 
         if (estudante != null) {
-            estudante.exibirDados();
+            estudante.exibirDadosEspecificos();
         } else {
             System.out.println("Estudante não encontrado.");
         }

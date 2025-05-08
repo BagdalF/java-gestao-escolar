@@ -84,5 +84,7 @@ public class Estudante extends Pessoa {
     public void exibirDadosEspecificos() {
         exibirDados();
         System.out.println("Matrícula: " + this.matricula);
+        System.out.println("Turma: " + this.turma.getNome());
+        exibirNotas();
     }
 }

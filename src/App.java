@@ -72,10 +72,9 @@ public class App {
 
         while (!entradaValida) {
             try {
-                scanner.nextLine();
-                System.out.print("Escolha uma opção: ");
-                scanner.nextLine();
+                System.out.print("\nEscolha uma opção: ");
                 entrada = scanner.nextInt();
+                System.out.println("\n");
                 entradaValida = true;
             } catch (java.util.InputMismatchException e) {
                 System.out.println("Entrada inválida! Por favor, insira um número natural.");
