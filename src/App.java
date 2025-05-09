@@ -42,7 +42,7 @@ public class App {
                         menuProfessores(scanner, professores, disciplinas);
                         break;
                     case 2:
-                        menuEstudantes(scanner, estudantes);
+                        menuEstudantes(scanner, estudantes, turmas);
                         break;
                     case 3:
                         menuDisciplinas(scanner, disciplinas, professores, turmas);
@@ -140,7 +140,7 @@ public class App {
      * Menu para gerenciar estudantes. Permite cadastrar, exibir,
      * adicionar/remover notas e remover estudantes.
      */
-    public static void menuEstudantes(Scanner scanner, List<Estudante> estudantes) {
+    public static void menuEstudantes(Scanner scanner, List<Estudante> estudantes, List<Turma> turmas) {
         int opcao;
         do {
             System.out.println("\n===== GERENCIAMENTO DE ESTUDANTES =====");
@@ -163,7 +163,7 @@ public class App {
                     EstudanteController.exibirEstudantes(estudantes);
                     break;
                 case 3:
-                    EstudanteController.exibirDadosEstudante(scanner, estudantes);
+                    EstudanteController.exibirDadosEstudante(scanner, estudantes, turmas);
                     break;
                 case 4:
                     EstudanteController.adicionarNotaEstudante(scanner, estudantes);
