@@ -24,7 +24,7 @@ public class ProfessorController {
         String telefone = scanner.nextLine();
 
         // Cria um novo objeto Professor
-        Professor professor = new Professor(nome, cpf, email, telefone, idProfessor);
+        Professor professor = EntityFactory.criarProfessor(nome, cpf, email, telefone, idProfessor);
         professores.add(professor); // Adiciona o professor à lista de professores
         System.out.println("Professor cadastrado com sucesso!");
     }
@@ -162,5 +162,34 @@ public class ProfessorController {
 
         professores.removeIf(p -> p.getIdProfessor() == idProfessor); // Remove o professor da lista
         System.out.println("Professor com ID " + idProfessor + " removido com sucesso.");
+    }
+
+    public static void promoverEstudanteParaProfessor(Scanner scanner, List<Estudante> estudantes, List<Professor> professores) {
+        if (estudantes.isEmpty()) {
+            System.out.println("Nenhum estudante cadastrado.");
+            return;
+        }
+
+        System.out.print("Digite o ID do estudante: ");
+        int idEstudante = scanner.nextInt();
+        scanner.nextLine();
+
+        Estudante estudante = null;
+        for (Estudante e : estudantes) {
+            if (e.getMatricula() == idEstudante) {
+                estudante = e;
+                break; // Interrompe o loop assim que o estudante é encontrado
+            }
+        }
+
+        if (estudante != null) {
+            // Cria um novo professor a partir do estudante
+            Professor professor = new EstudanteParaProfessorAdapter(estudante, professores.size() + 1);
+            professores.add(professor);
+            estudantes.remove(estudante); // Remove o estudante da lista
+            System.out.println("Estudante promovido a professor com sucesso!");
+        } else {
+            System.out.println("Estudante não encontrado.");
+        }
     }
 }

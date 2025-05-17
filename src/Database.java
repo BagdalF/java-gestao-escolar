@@ -17,7 +17,7 @@ public class Database {
         Professor professor4 = new Professor("Clara Mendes", "44455566677", "clara@escola.com", "444555666", 4);
         Professor professor5 = new Professor("Lucas Almeida", "55566677788", "lucas@escola.com", "555666777", 5);
         Professor professor6 = new Professor("Fernanda Costa", "66677788899", "fernanda@escola.com", "666777888", 6);
-        
+
         professores.add(professor1);
         professores.add(professor2);
         professores.add(professor3);
@@ -26,6 +26,7 @@ public class Database {
         professores.add(professor6);
 
         // Populando disciplinas
+
         Disciplina disciplina1 = new Disciplina(1, "Matemática", "Matemática básica", 80);
         Disciplina disciplina2 = new Disciplina(2, "Português", "Gramática e literatura", 60);
         Disciplina disciplina3 = new Disciplina(3, "História", "História geral", 100);
