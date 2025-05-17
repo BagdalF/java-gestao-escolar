@@ -62,7 +62,7 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
 
-    // Agregação: Permite acessar a lista de professores associados à professores
+    // Agregação: Permite acessar a lista de professores associados à disciplinas
     public List<Professor> getProfessores() {
         return professores;
     }

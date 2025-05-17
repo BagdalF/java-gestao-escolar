@@ -65,7 +65,7 @@ public class ProfessorController {
         }
 
         if (professor != null) {
-            professor.exibirDados();
+            professor.exibirDadosEspecificos();
         } else {
             System.out.println("Professor não encontrado.");
         }

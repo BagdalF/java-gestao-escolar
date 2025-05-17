@@ -36,7 +36,7 @@ public class EstudanteController {
         }
     }
 
-    public static void exibirDadosEstudante(Scanner scanner, List<Estudante> estudantes) {
+    public static void exibirDadosEstudante(Scanner scanner, List<Estudante> estudantes, List<Turma> turmas) {
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");
             return;
@@ -54,7 +54,7 @@ public class EstudanteController {
         }
 
         if (estudante != null) {
-            estudante.exibirDados();
+            estudante.exibirDadosEspecificos(turmas);
         } else {
             System.out.println("Estudante não encontrado.");
         }

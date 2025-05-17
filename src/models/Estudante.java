@@ -2,6 +2,7 @@ package models;
 
 // Classe que representa um estudante, herdando atributos de Pessoa e adicionando matrícula, turma, notas e frequências.
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Estudante extends Pessoa {
@@ -61,7 +62,7 @@ public class Estudante extends Pessoa {
 
     // Sobrecarga do método adicionarNota
     public void adicionarNota(List<Integer> notas) {
-        this.notas.addAll(notas);
+        Collections.addAll(this.notas, notas.toArray(new Integer[0]));
     }
 
     // Método para exibir notas do estudante
@@ -80,9 +81,32 @@ public class Estudante extends Pessoa {
         return soma / this.notas.size();
     }
 
+    // Método para verificar se o estudante está em mais de uma turma
+    public boolean estaEmMaisDeUmaTurma(List<Turma> outrasTurmas) {
+        for (Turma outraTurma : outrasTurmas) {
+            if (!Collections.disjoint(Collections.singleton(this), outraTurma.getEstudantes())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void exibirDadosEspecificos() {
         exibirDados();
         System.out.println("Matrícula: " + this.matricula);
+        System.out.println("Turma: " + this.turma.getNome());
+
+        exibirNotas();
+    }
+
+    public void exibirDadosEspecificos(List<Turma> outrasTurmas) {
+        exibirDados();
+        System.out.println("Matrícula: " + this.matricula);
+        System.out.println("Turma: " + this.turma.getNome());
+        if (estaEmMaisDeUmaTurma(outrasTurmas)) {
+            System.out.println("O estudante está em mais de uma turma.");
+        }
+        exibirNotas();
     }
 }
