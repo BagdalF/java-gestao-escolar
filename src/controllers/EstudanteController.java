@@ -21,7 +21,7 @@ public class EstudanteController {
         System.out.print("Digite o telefone do estudante: ");
         String telefone = scanner.nextLine();
 
-        Estudante estudante = new Estudante(nome, cpf, email, telefone, matricula, null, null);
+        Estudante estudante = EntityFactory.criarEstudante(nome, cpf, email, telefone, matricula, null, null);
         estudantes.add(estudante); // Adiciona o estudante à lista de estudantes
         System.out.println("Estudante cadastrado com sucesso!");
     }

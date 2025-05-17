@@ -47,7 +47,7 @@ public class TurmaController {
             }
         }
 
-        Turma turma = new Turma(idTurma, nome, disciplinasTurma);
+        Turma turma = EntityFactory.criarTurma(idTurma, nome, disciplinasTurma);
         turmas.add(turma);
         System.out.println("Turma criada com sucesso!");
     }

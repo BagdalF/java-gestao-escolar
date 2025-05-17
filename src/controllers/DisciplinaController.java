@@ -28,7 +28,7 @@ public class DisciplinaController {
             }
         }
 
-        Disciplina disciplina = new Disciplina(codigo, nome, descricao, cargaHoraria);
+        Disciplina disciplina = EntityFactory.criarDisciplina(codigo, nome, descricao, cargaHoraria);
         disciplinas.add(disciplina); // Adiciona a disciplina à lista de disciplinas
         System.out.println("Disciplina cadastrada com sucesso!");
     }
