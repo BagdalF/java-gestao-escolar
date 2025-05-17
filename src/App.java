@@ -39,7 +39,7 @@ public class App {
                 // Direciona para o menu correspondente com base na opção escolhida
                 switch (opcaoPrincipal) {
                     case 1:
-                        menuProfessores(scanner, professores, disciplinas);
+                        menuProfessores(scanner, professores, disciplinas, estudantes);
                         break;
                     case 2:
                         menuEstudantes(scanner, estudantes, turmas);
@@ -92,7 +92,7 @@ public class App {
      * Menu para gerenciar professores. Permite cadastrar, exibir,
      * adicionar/remover disciplinas e remover professores.
      */
-    public static void menuProfessores(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
+    public static void menuProfessores(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas, List<Estudante> estudantes) {
         int opcao;
         do {
 
@@ -103,7 +103,8 @@ public class App {
             System.out.println("4. Adicionar Disciplina a um Professor");
             System.out.println("5. Remover Disciplina de um Professor");
             System.out.println("6. Remover Professor");
-            System.out.println("7. Voltar");
+            System.out.println("7. Promover Estudante para Professor");
+            System.out.println("8. Voltar");
 
             opcao = capturarEntradaInteira(scanner);
 
@@ -128,6 +129,9 @@ public class App {
                     ProfessorController.removerProfessor(scanner, professores);
                     break;
                 case 7:
+                    ProfessorController.promoverEstudanteParaProfessor(scanner, estudantes, professores);
+                    break;
+                case 8:
                     return; // Retorna ao menu principal
                 default:
                     System.out.println("Opção inválida!");
