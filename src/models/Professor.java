@@ -54,14 +54,12 @@ public class Professor extends Pessoa {
         disciplina.getProfessores().remove(this);
     }
 
-    // Método para exibir as disciplinas do professor
     public void exibirDisciplinas() {
         for (Disciplina disciplina : disciplinas) {
             disciplina.exibirDados();
         }
     }
 
-    // Método para buscar disciplina por código
     public Disciplina buscarDisciplinaPorCodigo(int codigo) {
         for (Disciplina disciplina : disciplinas) {
             if (disciplina.getCodigo() == codigo) {
@@ -80,6 +78,7 @@ public class Professor extends Pessoa {
         }
     }
 
+    //Polimorfismo: Sobrescreve o método exibirDados da classe Pessoa
     @Override
     public void exibirDadosEspecificos() {
         exibirDados();

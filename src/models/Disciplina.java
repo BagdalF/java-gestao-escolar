@@ -82,35 +82,31 @@ public class Disciplina {
         this.turmas = turmas;
     }
 
-    // Método para adicionar uma turma à turma
     public void adicionarTurma(Turma turma) {
         this.turmas.add(turma);
     }
 
-    // Método para remover uma turma da turma
     public void removerTurma(Turma turma) {
         this.turmas.remove(turma);
     }
 
-    // Sobrecarga do método adicionarProfessor
     public void adicionarProfessor(Professor professor) {
         this.professores.add(professor);
         professor.adicionarDisciplina(this);
     }
 
+    // Sobrecarga do método adicionarProfessor
     private void adicionarProfessor(List<Professor> professores) {
         for (Professor professor : professores) {
             adicionarProfessor(professor); // Reutiliza o método existente
         }
     }
 
-    // Método para remover um professor da disciplina
     public void removerProfessor(Professor professor) {
         this.professores.remove(professor);
         professor.removeDisciplina(this);
     }
 
-    // Método para buscar um professor pelo nome
     public Professor buscarProfessorPorNome(String nome) {
         for (Professor professor : professores) {
             if (professor.getNome().equalsIgnoreCase(nome)) {
@@ -120,7 +116,6 @@ public class Disciplina {
         return null;
     }
 
-    // Método para exibir turmas da disciplina
     public void exibirTurmas() {
         // Composição: A disciplina mantém uma relação com as turmas
         for (Turma turma : turmas) {
@@ -128,7 +123,6 @@ public class Disciplina {
         }
     }
 
-    // Método para exibir os dados da disciplina
     public void exibirDados() {
         System.out.println("Código: " + codigo);
         System.out.println("Nome: " + nome);

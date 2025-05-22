@@ -3,7 +3,6 @@
  * Classe principal do Sistema de Gestão Acadêmica.
  * Esta classe contém o método main e os menus para gerenciar professores, estudantes, disciplinas e turmas.
  */
-// Importa a classe Scanner para leitura de dados do console
 import controllers.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,13 +58,12 @@ public class App {
             } while (opcaoPrincipal != 5);
         } catch (java.util.InputMismatchException e) {
             System.out.println("Erro: Entrada inválida! Por favor, tente novamente.");
-            // Reinicia o menu principal usando um loop em vez de recursão
         } catch (Exception e) {
             System.out.println("Erro inesperado ocorreu. Por favor, tente novamente.");
-            // Reinicia o menu principal usando um loop em vez de recursão
         }
     }
 
+    // Método auxiliar para capturar a entrada do usuário e garantir o tratamento de erros
     public static int capturarEntradaInteira(Scanner scanner) {
         int entrada = -1;
         boolean entradaValida = false;

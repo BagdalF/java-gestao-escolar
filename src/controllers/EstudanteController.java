@@ -1,15 +1,13 @@
 package controllers;
 
-// Nova classe para gerenciar estudantes
 import java.util.List;
 import java.util.Scanner;
 import models.*;
 
 public class EstudanteController {
-
-    // Métodos auxiliares (cadastrarEstudante, exibirEstudantes, etc.)
-    // Copiados da classe App e ajustados para esta classe
-    // Funções para Estudantes
+    /**
+     * Cadastra um novo estudante com os dados fornecidos pelo usuário.
+     */
     public static void cadastrarEstudante(Scanner scanner, List<Estudante> estudantes) {
         int matricula = estudantes.size() + 1;
         System.out.print("Digite o nome do estudante: ");
@@ -26,6 +24,9 @@ public class EstudanteController {
         System.out.println("Estudante cadastrado com sucesso!");
     }
 
+    /**
+     * Exibe todos os estudantes cadastrados.
+     */
     public static void exibirEstudantes(List<Estudante> estudantes) {
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");
@@ -36,6 +37,9 @@ public class EstudanteController {
         }
     }
 
+    /**
+     * Exibe os dados de um estudante específico com base na matrícula fornecida.
+     */
     public static void exibirDadosEstudante(Scanner scanner, List<Estudante> estudantes, List<Turma> turmas) {
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");
@@ -60,6 +64,9 @@ public class EstudanteController {
         }
     }
 
+    /**
+     * Adiciona uma nota a um estudante.
+     */
     public static void adicionarNotaEstudante(Scanner scanner, List<Estudante> estudantes) {
 
         if (estudantes.isEmpty()) {
@@ -90,6 +97,9 @@ public class EstudanteController {
         }
     }
 
+    /**
+     * Remove uma nota de um estudante.
+     */
     public static void removerNotaEstudante(Scanner scanner, List<Estudante> estudantes) {
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");
@@ -119,6 +129,9 @@ public class EstudanteController {
         }
     }
 
+    /**
+     * Remove um estudante com base na matrícula fornecida.
+     */
     public static void removerEstudante(Scanner scanner, List<Estudante> estudantes) {
         if (estudantes.isEmpty()) {
             System.out.println("Nenhum estudante cadastrado.");

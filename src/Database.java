@@ -3,7 +3,9 @@ import java.util.List;
 import models.*;
 
 public class Database {
-
+    /**
+     * Método para popular as listas de professores, estudantes, disciplinas e turmas.
+     */
     public static void popular(
             List<Professor> professores,
             List<Estudante> estudantes,

@@ -1,13 +1,13 @@
 package controllers;
 
-// Nova classe para gerenciar disciplinas
 import java.util.List;
 import java.util.Scanner;
 import models.*;
 
 public class DisciplinaController {
-
-    // Funções para Disciplinas
+    /**
+     * Cadastra uma nova disciplina com os dados fornecidos pelo usuário.
+     */
     public static void cadastrarDisciplina(Scanner scanner, List<Disciplina> disciplinas) {
         int codigo = disciplinas.size() + 1;
         System.out.print("Digite o nome da disciplina: ");
@@ -33,6 +33,9 @@ public class DisciplinaController {
         System.out.println("Disciplina cadastrada com sucesso!");
     }
 
+    /**
+     * Exibe todas as disciplinas cadastradas.
+     */
     public static void exibirDisciplinas(List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -44,6 +47,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Exibe os dados de uma disciplina específica com base no código fornecido.
+     */
     public static void exibirDadosDisciplina(Scanner scanner, List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -69,6 +75,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Exibe os dados de uma disciplina e suas turmas associadas.
+     */
     public static void exibirDadosDisciplinaTurma(Scanner scanner, List<Disciplina> disciplinas, List<Turma> turmas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -93,6 +102,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Adiciona um professor a uma disciplina.
+     */
     public static void adicionarProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -132,6 +144,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Remove um professor de uma disciplina.
+     */
     public static void removerProfessorDisciplina(Scanner scanner, List<Professor> professores, List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -170,6 +185,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Adiciona uma turma a uma disciplina.
+     */
     public static void adicionarTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");
@@ -209,6 +227,9 @@ public class DisciplinaController {
         }
     }
 
+    /**
+     * Remove uma turma de uma disciplina.
+     */
     public static void removerTurmaDisciplina(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
         if (disciplinas.isEmpty()) {
             System.out.println("Nenhuma disciplina cadastrada.");

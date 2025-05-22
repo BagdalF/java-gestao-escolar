@@ -1,14 +1,10 @@
 package controllers;
-// Nova classe para gerenciar professores
 
 import java.util.List;
 import java.util.Scanner;
 import models.*;
 
 public class ProfessorController {
-
-    // Métodos auxiliares (cadastrarProfessor, exibirProfessores, etc.)
-    // Copiados da classe App e ajustados para esta classe
     /**
      * Cadastra um novo professor com os dados fornecidos pelo usuário.
      */
@@ -39,7 +35,7 @@ public class ProfessorController {
         }
 
         for (Professor professor : professores) {
-            professor.exibirDados(); // Chama o método exibirDados da classe Professor
+            professor.exibirDados(); // Chama o método exibirDados para cada classe Professor
         }
     }
 

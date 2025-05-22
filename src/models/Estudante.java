@@ -55,7 +55,6 @@ public class Estudante extends Pessoa {
         this.notas = notas;
     }
 
-    // Método para adicionar nota do estudante
     public void adicionarNota(int nota) {
         this.notas.add(nota);
     }
@@ -65,7 +64,6 @@ public class Estudante extends Pessoa {
         Collections.addAll(this.notas, notas.toArray(new Integer[0]));
     }
 
-    // Método para exibir notas do estudante
     public void exibirNotas() {
         for (int i = 0; i < this.notas.size(); i++) {
             System.out.println("Nota " + (i + 1) + ": " + this.notas.get(i));

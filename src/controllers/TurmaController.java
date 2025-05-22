@@ -1,5 +1,4 @@
 package controllers;
-// Nova classe para gerenciar turmas
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,9 +6,9 @@ import java.util.Scanner;
 import models.*;
 
 public class TurmaController {
-
-    // Métodos auxiliares (criarTurma, exibirTurmas, etc.)
-    // Copiados da classe App e ajustados para esta classe
+    /**
+     * Cria uma nova turma com os dados fornecidos pelo usuário.
+     */
     public static void criarTurma(Scanner scanner, List<Turma> turmas, List<Disciplina> disciplinas) {
         int idTurma = turmas.size() + 1;
 
@@ -52,6 +51,9 @@ public class TurmaController {
         System.out.println("Turma criada com sucesso!");
     }
 
+    /**
+     * Exibe todas as turmas cadastradas.
+     */
     public static void exibirTurmas(List<Turma> turmas) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -63,6 +65,9 @@ public class TurmaController {
         }
     }
 
+    /**
+     * Exibe os dados de uma turma específica com base no ID fornecido.
+     */
     public static void exibirDadosTurma(Scanner scanner, List<Turma> turmas) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -90,6 +95,10 @@ public class TurmaController {
     }
 
     // Composição: Uma turma mantém uma relação com os estudantes
+
+    /**
+     * Adiciona um estudante a uma turma.
+     */
     public static void adicionarEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -127,6 +136,10 @@ public class TurmaController {
     }
 
     // Composição: Remove a relação entre a turma e o estudante
+
+    /**
+     * Remove um estudante de uma turma.
+     */
     public static void removerEstudanteTurma(Scanner scanner, List<Turma> turmas, List<Estudante> estudantes) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -163,6 +176,9 @@ public class TurmaController {
         }
     }
 
+    /**
+     * Exibe os estudantes de uma turma específica.
+     */
     public static void exibirEstudantesTurma(Scanner scanner, List<Turma> turmas) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -186,6 +202,9 @@ public class TurmaController {
         }
     }
 
+    /**
+     * Busca um estudante pelo nome em uma turma específica.
+     */
     public static void buscarEstudantePorNome(Scanner scanner, List<Turma> turmas) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");
@@ -216,6 +235,9 @@ public class TurmaController {
         }
     }
 
+    /**
+     * Exibe as disciplinas de uma turma específica.
+     */
     public static void exibirDisciplinas(Scanner scanner, List<Turma> turmas) {
         if (turmas.isEmpty()) {
             System.out.println("Nenhuma turma cadastrada.");

@@ -68,14 +68,12 @@ public class Turma {
         }
     }
 
-    // Método para remover um estudante da turma
     // Composição: Remove um estudante da turma e atualiza a relação no estudante
     public void removerEstudante(Estudante estudante) {
         this.estudantes.remove(estudante);
         estudante.setTurma(null);
     }
 
-    // Método para exibir os estudantes da turma
     public void exibirEstudantes() {
         for (Estudante estudante : estudantes) {
             estudante.exibirDados();
