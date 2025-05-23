@@ -16,6 +16,16 @@ public class Disciplina implements Serializable {
     private List<Professor> professores;
     private List<Turma> turmas;
 
+    // Construtor padrão
+    public Disciplina() {
+        this.codigo = 0;
+        this.nome = "";
+        this.descricao = "";
+        this.cargaHoraria = 0;
+        this.professores = new ArrayList<>();
+        this.turmas = new ArrayList<>();
+    }
+
     // Construtor da classe Disciplina
     public Disciplina(
             int codigo,
