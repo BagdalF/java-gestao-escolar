@@ -1,10 +1,12 @@
 package models;
 
 // Importa a classe ArrayList para manipulação de listas dinâmicas
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Disciplina {
+public class Disciplina implements Serializable {
+    private static final long serialVersionUID = 2L;
 
     // Atributos da classe Disciplina
     private int codigo;

@@ -36,6 +36,7 @@ public class ProfessorController {
 
         for (Professor professor : professores) {
             professor.exibirDados(); // Chama o método exibirDados para cada classe Professor
+            System.out.println("\n");
         }
     }
 
