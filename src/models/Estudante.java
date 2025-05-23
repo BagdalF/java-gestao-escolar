@@ -1,11 +1,13 @@
 package models;
 
 // Classe que representa um estudante, herdando atributos de Pessoa e adicionando matrícula, turma, notas e frequências.
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Estudante extends Pessoa {
+public class Estudante extends Pessoa implements Serializable {
+    private static final long serialVersionUID = 3L;
 
     // Atributos da classe Estudante
     private int matricula;

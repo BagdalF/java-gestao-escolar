@@ -1,7 +1,10 @@
 package models;
 
-// Classe abstrata que representa uma pessoa com atributos básicos como nome, CPF, email e telefone.
-public abstract class Pessoa {
+import java.io.Serializable;
+
+public abstract class Pessoa implements Serializable {
+
+    private static final long serialVersionUID = 0L;
 
     // Atributos da classe Pessoa
     private String nome;

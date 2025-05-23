@@ -11,18 +11,33 @@ import models.*;
 
 public class App {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             int opcaoPrincipal;
 
-            // Listas para armazenar os objetos do sistema
+            // Inicializa as listas de professores, estudantes, disciplinas e turmas
             List<Professor> professores = new ArrayList<>();
             List<Estudante> estudantes = new ArrayList<>();
             List<Disciplina> disciplinas = new ArrayList<>();
             List<Turma> turmas = new ArrayList<>();
 
-            // Popula as listas com dados iniciais
-            Database.popular(professores, estudantes, disciplinas, turmas);
+            try {
+                // Carrega os dados das listas a partir dos arquivos
+                professores = (List<Professor>) Database.carregarLista("professores.ser");
+                estudantes = (List<Estudante>) Database.carregarLista("estudantes.ser");
+                disciplinas = (List<Disciplina>) Database.carregarLista("disciplinas.ser");
+                turmas = (List<Turma>) Database.carregarLista("turmas.ser");
+
+                // Verifica se as listas estão vazias e inicializa com dados padrão, se necessário
+                if (professores.isEmpty() || estudantes.isEmpty() || disciplinas.isEmpty() || turmas.isEmpty()) {
+                    System.out.println("Dados não encontrados. Inicializando com dados padrão...");
+                    Database.popularInicial(professores, estudantes, disciplinas, turmas);
+                }
+            } catch (Exception e) {
+                System.out.println("Erro ao carregar dados. Inicializando com dados padrão... \n" + e.getLocalizedMessage());
+                Database.popularInicial(professores, estudantes, disciplinas, turmas);
+            }
 
             do {
                 // Exibe o menu principal
@@ -56,10 +71,14 @@ public class App {
                         System.out.println("Opção inválida! Tente novamente.");
                 }
             } while (opcaoPrincipal != 5);
+
+            // Salva os dados ao sair do sistema
+            System.out.println("Salvando dados...");
+            Database.salvarDados(professores, estudantes, disciplinas, turmas);
         } catch (java.util.InputMismatchException e) {
             System.out.println("Erro: Entrada inválida! Por favor, tente novamente.");
         } catch (Exception e) {
-            System.out.println("Erro inesperado ocorreu. Por favor, tente novamente.");
+            System.out.println("Erro inesperado ocorreu. Por favor, tente novamente.\n" + e.getLocalizedMessage());
         }
     }
 

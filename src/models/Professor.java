@@ -2,14 +2,23 @@ package models;
 
 // Classe que representa um professor, herdando atributos de Pessoa e adicionando id e disciplinas.
 // Importa a classe ArrayList para manipulação de listas dinâmicas
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Professor extends Pessoa {
+public class Professor extends Pessoa implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     // Atributos da classe Professor
     private int idProfessor;
     private List<Disciplina> disciplinas;
+
+    // Construtor padrão
+    public Professor() {
+        super("", "", "", "");
+        this.idProfessor = 0;
+        this.disciplinas = new ArrayList<>();
+    }
 
     // Construtor da classe Professor
     public Professor(

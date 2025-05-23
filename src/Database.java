@@ -1,12 +1,47 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import models.*;
 
 public class Database {
     /**
-     * Método para popular as listas de professores, estudantes, disciplinas e turmas.
+     * Salva as listas fornecidas em arquivos binários usando serialização.
      */
-    public static void popular(
+    public static void salvarDados(List<Professor> professores, List<Estudante> estudantes, List<Disciplina> disciplinas, List<Turma> turmas) throws IOException {
+        salvarLista(professores, "professores.ser");
+        salvarLista(estudantes, "estudantes.ser");
+        salvarLista(disciplinas, "disciplinas.ser");
+        salvarLista(turmas, "turmas.ser");
+    }
+
+    // Métodos utilitários privados para serialização
+    private static void salvarLista(List<?> lista, String filename) throws IOException {
+        File dataDir = new File("data");
+        if (!dataDir.exists()) {
+            dataDir.mkdir();
+        }
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(dataDir, filename)))) {
+            oos.writeObject(lista);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<?> carregarLista(String filename) throws IOException, ClassNotFoundException {
+        File dataDir = new File("data");
+        File file = new File(dataDir, filename);
+        if (!file.exists()) {
+            return new ArrayList<>();
+        }
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+            return (List<?>) ois.readObject();
+        }
+    }
+
+    
+    /**
+     * Método para popular inicialmente as listas de professores, estudantes, disciplinas e turmas.
+     */
+    public static void popularInicial(
             List<Professor> professores,
             List<Estudante> estudantes,
             List<Disciplina> disciplinas,

@@ -2,10 +2,12 @@ package models;
 
 // Classe que representa uma turma com atributos como id, nome, avaliações, disciplinas e estudantes.
 // Importa a classe ArrayList para manipulação de listas dinâmicas
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Turma {
+public class Turma implements Serializable {
+    private static final long serialVersionUID = 4L;
 
     // Atributos da classe Turma
     private int idTurma;
