@@ -16,6 +16,14 @@ public class Turma implements Serializable {
     private List<Disciplina> disciplinas;
     private List<Estudante> estudantes;
 
+    // Construtor padrão
+    public Turma() {
+        this.idTurma = 0;
+        this.nome = "";
+        this.disciplinas = new ArrayList<>();
+        this.estudantes = new ArrayList<>();
+    }
+
     // Construtor da classe Turma
     public Turma(int idTurma, String nome, List<Disciplina> disciplinas) {
         this.idTurma = idTurma;

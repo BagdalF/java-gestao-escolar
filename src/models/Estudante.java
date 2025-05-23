@@ -14,6 +14,14 @@ public class Estudante extends Pessoa implements Serializable {
     private Turma turma;
     private List<Integer> notas;
 
+    // Construtor padrão
+    public Estudante() {
+        super("", "", "", "");
+        this.matricula = 0;
+        this.turma = null;
+        this.notas = new ArrayList<>();
+    }
+
     // Construtor da classe Estudante
     public Estudante(
             String nome,
