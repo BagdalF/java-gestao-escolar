@@ -25,7 +25,11 @@ public class Database {
         }
     }
 
-    @SuppressWarnings("unchecked")
+    // O GitHub Copilot identificou a anotação @SuppressWarnings("unchecked") como desnecessária
+    // no arquivo Database.java (linha 28). Com base nessa sugestão, e com orientação do assistente,
+    // removi essa anotação para manter o código mais limpo e evitar o uso de suprimir avisos que
+    // não estão sendo gerados. Essa prática ajuda a garantir que futuros warnings relevantes
+    // não sejam ignorados indevidamente.
     public static List<?> carregarLista(String filename) throws IOException, ClassNotFoundException {
         File dataDir = new File("data");
         File file = new File(dataDir, filename);

@@ -50,25 +50,18 @@ public class App {
 
                 opcaoPrincipal = capturarEntradaInteira(scanner);
 
+                // Utilizei a sugestão do Visual Studio Code para converter a estrutura switch tradicional para o formato moderno
+                // "rule switch" (com ->), que foi introduzido a partir do Java 14 e estabilizado no Java 17.
+                // Essa mudança torna o código mais limpo, legível e menos propenso a erros, eliminando
+                // a necessidade do uso de break.
                 // Direciona para o menu correspondente com base na opção escolhida
                 switch (opcaoPrincipal) {
-                    case 1:
-                        menuProfessores(scanner, professores, disciplinas, estudantes);
-                        break;
-                    case 2:
-                        menuEstudantes(scanner, estudantes, turmas);
-                        break;
-                    case 3:
-                        menuDisciplinas(scanner, disciplinas, professores, turmas);
-                        break;
-                    case 4:
-                        menuTurmas(scanner, turmas, estudantes, disciplinas);
-                        break;
-                    case 5:
-                        System.out.println("Saindo do sistema...");
-                        break;
-                    default:
-                        System.out.println("Opção inválida! Tente novamente.");
+                    case 1 -> menuProfessores(scanner, professores, disciplinas, estudantes);
+                    case 2 -> menuEstudantes(scanner, estudantes, turmas);
+                    case 3 -> menuDisciplinas(scanner, disciplinas, professores, turmas);
+                    case 4 -> menuTurmas(scanner, turmas, estudantes, disciplinas);
+                    case 5 -> System.out.println("Saindo do sistema...");
+                    default -> System.out.println("Opção inválida! Tente novamente.");
                 }
             } while (opcaoPrincipal != 5);
 
@@ -127,31 +120,17 @@ public class App {
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
-                case 1:
-                    ProfessorController.cadastrarProfessor(scanner, professores);
-                    break;
-                case 2:
-                    ProfessorController.exibirProfessores(professores);
-                    break;
-                case 3:
-                    ProfessorController.exibirDadosProfessor(scanner, professores);
-                    break;
-                case 4:
-                    ProfessorController.adicionarDisciplinaProfessor(scanner, professores, disciplinas);
-                    break;
-                case 5:
-                    ProfessorController.removerDisciplinaProfessor(scanner, professores, disciplinas);
-                    break;
-                case 6:
-                    ProfessorController.removerProfessor(scanner, professores);
-                    break;
-                case 7:
-                    ProfessorController.promoverEstudanteParaProfessor(scanner, estudantes, professores);
-                    break;
-                case 8:
+                case 1 -> ProfessorController.cadastrarProfessor(scanner, professores);
+                case 2 -> ProfessorController.exibirProfessores(professores);
+                case 3 -> ProfessorController.exibirDadosProfessor(scanner, professores);
+                case 4 -> ProfessorController.adicionarDisciplinaProfessor(scanner, professores, disciplinas);
+                case 5 -> ProfessorController.removerDisciplinaProfessor(scanner, professores, disciplinas);
+                case 6 -> ProfessorController.removerProfessor(scanner, professores);
+                case 7 -> ProfessorController.promoverEstudanteParaProfessor(scanner, estudantes, professores);
+                case 8 -> {
                     return; // Retorna ao menu principal
-                default:
-                    System.out.println("Opção inválida!");
+                }
+                default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 7);
     }
@@ -177,28 +156,16 @@ public class App {
 
             // Executa a ação correspondente à opção escolhida
             switch (opcao) {
-                case 1:
-                    EstudanteController.cadastrarEstudante(scanner, estudantes);
-                    break;
-                case 2:
-                    EstudanteController.exibirEstudantes(estudantes);
-                    break;
-                case 3:
-                    EstudanteController.exibirDadosEstudante(scanner, estudantes, turmas);
-                    break;
-                case 4:
-                    EstudanteController.adicionarNotaEstudante(scanner, estudantes);
-                    break;
-                case 5:
-                    EstudanteController.removerNotaEstudante(scanner, estudantes);
-                    break;
-                case 6:
-                    EstudanteController.removerEstudante(scanner, estudantes);
-                    break;
-                case 7:
+                case 1 -> EstudanteController.cadastrarEstudante(scanner, estudantes);
+                case 2 -> EstudanteController.exibirEstudantes(estudantes);
+                case 3 -> EstudanteController.exibirDadosEstudante(scanner, estudantes, turmas);
+                case 4 -> EstudanteController.adicionarNotaEstudante(scanner, estudantes);
+                case 5 -> EstudanteController.removerNotaEstudante(scanner, estudantes);
+                case 6 -> EstudanteController.removerEstudante(scanner, estudantes);
+                case 7 -> {
                     return;
-                default:
-                    System.out.println("Opção inválida!");
+                }
+                default -> System.out.println("Opção inválida!");
             }
         } while (opcao != 7);
     }
@@ -221,34 +188,18 @@ public class App {
             opcao = capturarEntradaInteira(scanner);
 
             switch (opcao) {
-                case 1:
-                    DisciplinaController.cadastrarDisciplina(scanner, disciplinas);
-                    break;
-                case 2:
-                    DisciplinaController.exibirDisciplinas(disciplinas);
-                    break;
-                case 3:
-                    DisciplinaController.exibirDadosDisciplina(scanner, disciplinas);
-                    break;
-                case 4:
-                    DisciplinaController.exibirDadosDisciplinaTurma(scanner, disciplinas, turmas);
-                    break;
-                case 5:
-                    DisciplinaController.adicionarProfessorDisciplina(scanner, professores, disciplinas);
-                    break;
-                case 6:
-                    DisciplinaController.removerProfessorDisciplina(scanner, professores, disciplinas);
-                    break;
-                case 7:
-                    DisciplinaController.adicionarTurmaDisciplina(scanner, turmas, disciplinas);
-                    break;
-                case 8:
-                    DisciplinaController.removerTurmaDisciplina(scanner, turmas, disciplinas);
-                    break;
-                case 9:
+                case 1 -> DisciplinaController.cadastrarDisciplina(scanner, disciplinas);
+                case 2 -> DisciplinaController.exibirDisciplinas(disciplinas);
+                case 3 -> DisciplinaController.exibirDadosDisciplina(scanner, disciplinas);
+                case 4 -> DisciplinaController.exibirDadosDisciplinaTurma(scanner, disciplinas, turmas);
+                case 5 -> DisciplinaController.adicionarProfessorDisciplina(scanner, professores, disciplinas);
+                case 6 -> DisciplinaController.removerProfessorDisciplina(scanner, professores, disciplinas);
+                case 7 -> DisciplinaController.adicionarTurmaDisciplina(scanner, turmas, disciplinas);
+                case 8 -> DisciplinaController.removerTurmaDisciplina(scanner, turmas, disciplinas);
+                case 9 -> {
                     return; // Sai do menu de disciplinas e volta ao menu principal
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                }
+                default -> System.out.println("Opção inválida! Tente novamente.");
             }
         } while (opcao != 9);
     }
@@ -271,34 +222,18 @@ public class App {
             opcao = capturarEntradaInteira(scanner);
 
             switch (opcao) {
-                case 1:
-                    TurmaController.criarTurma(scanner, turmas, disciplinas);
-                    break;
-                case 2:
-                    TurmaController.exibirTurmas(turmas);
-                    break;
-                case 3:
-                    TurmaController.exibirDadosTurma(scanner, turmas);
-                    break;
-                case 4:
-                    TurmaController.adicionarEstudanteTurma(scanner, turmas, estudantes);
-                    break;
-                case 5:
-                    TurmaController.removerEstudanteTurma(scanner, turmas, estudantes);
-                    break;
-                case 6:
-                    TurmaController.exibirEstudantesTurma(scanner, turmas);
-                    break;
-                case 7:
-                    TurmaController.buscarEstudantePorNome(scanner, turmas);
-                    break;
-                case 8:
-                    TurmaController.exibirDisciplinas(scanner, turmas);
-                    break;
-                case 9:
+                case 1 -> TurmaController.criarTurma(scanner, turmas, disciplinas);
+                case 2 -> TurmaController.exibirTurmas(turmas);
+                case 3 -> TurmaController.exibirDadosTurma(scanner, turmas);
+                case 4 -> TurmaController.adicionarEstudanteTurma(scanner, turmas, estudantes);
+                case 5 -> TurmaController.removerEstudanteTurma(scanner, turmas, estudantes);
+                case 6 -> TurmaController.exibirEstudantesTurma(scanner, turmas);
+                case 7 -> TurmaController.buscarEstudantePorNome(scanner, turmas);
+                case 8 -> TurmaController.exibirDisciplinas(scanner, turmas);
+                case 9 -> {
                     return; // Sai do menu de turmas e volta ao menu principal
-                default:
-                    System.out.println("Opção inválida! Tente novamente.");
+                }
+                default -> System.out.println("Opção inválida! Tente novamente.");
             }
         } while (opcao != 9);
     }
